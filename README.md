@@ -67,8 +67,8 @@ new Confusion().add((config) => {
     ])
 })
 ```
-|- Option -|- Type -|- Notes -|
-|----------|--------|---------|
+|- Option -|- Type -|- Default -|- Notes -|
+|----------|--------|-----------|---------|
 | mandatory | boolean | true     | Causes an error/reload_error to be emitted if the configuration does not exist |
 | watch     | boolean | undefined | Watching implemented via [fs.watch](https://nodejs.org/api/fs.html#fs_fs_watch_filename_options_listener). Be sure to read the caveats section if you encounter problems. |
 | encoding  | string  | utf8      | Specified the file encoding
@@ -81,10 +81,10 @@ new Confusion().add((config) => {
     return loaders.http({ url: 'http://www.example.com/config' })
 })
 ```
-|- Option -|- Type -|- Notes -|
-|----------|--------|---------|
+|- Option -|- Type -|- Default -|- Notes -|
+|----------|--------|-----------|---------|
 | mandatory | boolean | true       | Causes an error/reload_error to be emitted if the configuration does not exist |
-| watch     | object  | undefined  | Watching is implemented by issuing HEAD requests and comparing the Etag and Last-Modified headers. |
+| watch     | object  | undefined  | Watching is implemented by issuing HEAD requests and comparing the Etag and Last-Modified headers. You need to specify and interval in the configuration, e.g. ```{ watch: { interval: '5m' } } |
 | request   | object  | [see here](https://www.github.com/guidesmiths/confusion/tree/master/lib/loaders/http.js#13) | options that will be passed to [the underlying http client](https://github.com/request/request).
 
 ## Post Processors
