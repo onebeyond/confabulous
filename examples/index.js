@@ -8,11 +8,15 @@ new Confusion().add((config) => {
     return loaders.req({ path: './conf/' + process.env.NODE_ENV + '.js' })
 }).add((config) => {
     return loaders.req({ path: './conf/optional.js' })
-}).end((err, config) => {
-    if (err) throw err
-    console.log(JSON.stringify(config, null, 2))
+}).on('loaded', (config) => {
+    console.log('Loaded', JSON.stringify(config, null, 2))
+}).on('reloaded', (config) => {
+    console.log('Reloaded', JSON.stringify(config, null, 2))
     process.exit()
-})
-
+}).on('error', (err) => {
+    console.error('Error', err)
+}).on('reload_error', (err) => {
+    console.error('Reload Error', err)
+}).end()
 
 setInterval(_.noop, Number.MAX_SAFE_INTEGER)
