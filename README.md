@@ -1,6 +1,6 @@
 # Confusion (Working Title)
 
-Confusion is a hierarchical config loader and post processor. It can load config from files, web servers, databases, scm systems, and it's easy to extend too. You can watch config sources for changes and apply post processors to do things like decrypt secrets or unflatten key/value pairs into structured objects.
+Confusion is a hierarchical config loader and post processor. It can load config from command line arguments, environment variables, files, web servers, databases, and even scm systems, etc. It's easy to extend too. You can watch config sources for changes and apply post processors to do things like decrypt secrets or unflatten key/value pairs into structured objects.
 
 ## TL;DR
 ```
@@ -26,14 +26,7 @@ new Confusion().add((config) => {
 ```
 
 ## Loaders
-Loaders are used to load config. Out of the box you can load config from command line parameters, environment variables, files, and web servers. You can also use one of the following plugins...
-
-1. mysql-confusion
-2. etcd-confusion
-3. redis-confusion
-4. postgres-confusion
-5. github-confusion
-6. foxpro-confusion
+Loaders are used to load config. Out of the box you can load config from command line parameters, environment variables, files, and web servers. Once we've got the API a bit more stable we'll start writing plugins for other sources too.
 
 ### args
 Loads config from command line arguments
