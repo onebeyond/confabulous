@@ -34,8 +34,8 @@ Loads config from command line arguments
 new Confusion().add((config) => {
     return loaders.args()
 })
-You cannot watch command line arguments
 ```
+You cannot watch command line arguments
 
 ### env
 Loads config from envrionment variables
