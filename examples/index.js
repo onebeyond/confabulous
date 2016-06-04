@@ -1,20 +1,27 @@
 var noop = require('lodash.noop')
 var Confusion = require('..').Confusion
 var loaders = require('..').loaders
-var transformers = require('..').transformers
+var processors = require('..').processors
 
 new Confusion().add((config) => {
+    return loaders.env([
+        processors.mount({ key: 'env' })
+    ])
+}).add((config) => {
     return loaders.require({ path: './conf/defaults.js', watch: true })
 }).add((config) => {
-    return loaders.require({ path: './conf/' + process.env.NODE_ENV + '.js', watch: true })
+    return loaders.require({ path: `./conf/${config.env.NODE_ENV}.js`, watch: true })
 }).add((config) => {
-    return loaders.require({ path: './conf/optional.js', mandatory: false })
+    return loaders.require({ path: './conf/runtime.js', mandatory: false })
 }).add((config) => {
-    return [
-        loaders.file({ path: './conf/secret.json.encrypted' }),
-        transformers.decrypt({ algorithm: 'aes192', password: process.env.SECRET }),
-        transformers.json()
-    ]
+    return loaders.file({ path: './conf/secret.json.encrypted' }, [
+        processors.decrypt({ algorithm: 'aes192', password: config.env.SECRET }),
+        processors.json()
+    ])
+}).add((config) => {
+    return loaders.args()
+}).add((config) => {
+    return loaders.http({ url: config.server.url, mandatory: false, watch: { interval: '5m' } })
 }).on('loaded', (config) => {
     console.log('Loaded', JSON.stringify(config, null, 2))
 }).on('reloaded', (config) => {

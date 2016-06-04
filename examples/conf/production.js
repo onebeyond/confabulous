@@ -1,6 +1,6 @@
 module.exports = {
-    production: 'loaded',
+    production: new Date(),
     server: {
-        port: 80
+        url: 'http://prod:3000/config'
     }
 }

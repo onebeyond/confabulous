@@ -1,6 +1,6 @@
 module.exports = {
-    defaults: 'loaded',
+    defaults: new Date(),
     server: {
-        port: 3000
+        url: 'http://localhost:3000/config'
     }
 }

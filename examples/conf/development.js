@@ -1,6 +1,6 @@
 module.exports = {
-    development: 'loaded',
+    development: new Date(),
     server: {
-        port: 8080
+        url: 'http://jobs-api.service.development.tescloud.com/status'
     }
 }
