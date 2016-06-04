@@ -133,6 +133,6 @@ new Confusion().add((config) => {
 ```
 
 ### FAQ
-Q. Why doesn't Confusion notice new files.
+Q. Why doesn't Confusion notice new files.<br/>
 A. Because fs.watch problem doesn't notice them either. You can workaround by modifying some configuration watched by a different loader higher up in the confusion stack
 
