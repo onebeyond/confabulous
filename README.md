@@ -43,8 +43,8 @@ Loads config from envrionment variables
 new Confusion().add((config) => {
     return loaders.env()
 })
-You cannot watch environment variables
 ```
+You cannot watch environment variables
 
 ### require
 Loads config from a .js or .json file
