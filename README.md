@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/guidesmiths/confusion.png)](https://travis-ci.org/guidesmiths/confusion)
+
 # Confusion (Working Title)
 
 Confusion is a hierarchical config loader and post processor. It can load config from command line arguments, environment variables, files, web servers, databases, and even scm systems, etc. It's easy to extend too. You can watch config sources for changes and apply post processors to do things like decrypt secrets or unflatten key/value pairs into structured objects.
