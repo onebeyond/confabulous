@@ -13,6 +13,9 @@
     "debug": "^2.2.0",
     "deep-freeze": "0.0.1",
     "lodash": "^4.13.1",
+    "lodash.defaults": "^4.0.1",
+    "lodash.has": "^4.4.0",
+    "lodash.noop": "^3.0.1",
     "require-all": "^2.0.0"
   }
 }

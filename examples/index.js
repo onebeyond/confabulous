@@ -1,4 +1,4 @@
-var _ = require('lodash')
+var noop = require('lodash.noop')
 var Confusion = require('..').Confusion
 var loaders = require('..').loaders
 
@@ -7,7 +7,7 @@ new Confusion().add((config) => {
 }).add((config) => {
     return loaders.req({ path: './conf/' + process.env.NODE_ENV + '.js' })
 }).add((config) => {
-    return loaders.req({ path: './conf/optional.js' })
+    return loaders.req({ path: './conf/optional.js', mandatory: false })
 }).on('loaded', (config) => {
     console.log('Loaded', JSON.stringify(config, null, 2))
 }).on('reloaded', (config) => {
@@ -19,4 +19,4 @@ new Confusion().add((config) => {
     console.error('Reload Error', err)
 }).end()
 
-setInterval(_.noop, Number.MAX_SAFE_INTEGER)
+setInterval(noop, Number.MAX_SAFE_INTEGER)
