@@ -53,11 +53,11 @@ describe('http', function() {
         app.get('/config', function(req, res) {
             setTimeout(function() {
                 res.json({ loaded: 'loaded' })
-            }, 300)
+            }, 1000)
         })
 
         server = app.listen(3000, function() {
-            http({ url: 'http://localhost:3000/config', request: { timeout: 100 } })(confabulous, function(err, config) {
+            http({ url: 'http://localhost:3000/config', request: { timeout: 500 } })(confabulous, function(err, config) {
                 assert(err)
                 assert.equal(err.message, 'ETIMEDOUT')
                 done()
@@ -246,7 +246,7 @@ describe('http', function() {
         app.head('/config', function(req, res) {
             setTimeout(function() {
                 res.json({ loaded: 'loaded' })
-            }, 300)
+            }, 1000)
         })
 
         app.get('/config', function(req, res) {
@@ -254,7 +254,7 @@ describe('http', function() {
         })
 
         server = app.listen(3000, function() {
-            http({ url: 'http://localhost:3000/config', mandatory: false, watch: { interval: '100ms' }, request: { timeout: 100 } })(confabulous, function(err, config) {
+            http({ url: 'http://localhost:3000/config', mandatory: false, watch: { interval: '100ms' }, request: { timeout: 500 } })(confabulous, function(err, config) {
                 assert.ifError(err)
                 assert.equal(config.loaded, 'loaded')
             }).on('error', function(err) {
