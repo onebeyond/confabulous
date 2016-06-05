@@ -37,6 +37,7 @@
     "eslint": "^0.23.0",
     "eslint-config-imperative": "0.0.6",
     "eslint-plugin-imperative": "0.0.2",
+    "express": "^4.13.4",
     "husky": "^0.11.4",
     "mocha": "^2.5.3"
   }
