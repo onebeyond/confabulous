@@ -6,7 +6,6 @@ Confusion is a hierarchical config loader and post processor. It can load config
 
 ## TL;DR
 ```
-var noop = require('lodash.noop')
 var Confusion = require('..').Confusion
 var loaders = require('..').loaders
 var processors = require('..').processors
