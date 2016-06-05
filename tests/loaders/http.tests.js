@@ -68,7 +68,7 @@ describe('http', function() {
     it('should report errors', function(done) {
         http({ url: 'http://localhost:9999/config' })(confabulous, function(err, config) {
             assert(err)
-            assert.ok(/connect ECONNREFUSED/.test(err.message))
+            assert(/connect ECONNREFUSED/.test(err.message), err.message)
             done()
         })
     })
@@ -258,7 +258,6 @@ describe('http', function() {
                 assert.ifError(err)
                 assert.equal(config.loaded, 'loaded')
             }).on('error', function(err) {
-                confabulous.emit('reloading')
                 assert(err)
                 assert.equal(err.message, 'ETIMEDOUT')
                 done()
