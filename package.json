@@ -6,7 +6,7 @@
   "scripts": {
     "example": "cd examples && SECRET='a password' NODE_ENV=development node index.js",
     "test": "NODE_ENV=test mocha --recursive tests",
-    "lint": "node_modules/.bin/eslint .",
+    "lint": "eslint .",
     "prepush": "npm run lint && npm test"
   },
   "author": "GuideSmiths Ltd",
@@ -36,5 +36,30 @@
     "express": "^4.13.4",
     "husky": "^0.11.4",
     "mocha": "^2.5.3"
-  }
+  },
+  "directories": {
+    "example": "examples",
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/guidesmiths/confusion.git"
+  },
+  "keywords": [
+    "configuration",
+    "loader",
+    "asynchronous",
+    "hierarchical",
+    "watch",
+    "file",
+    "environment",
+    "command",
+    "line",
+    "arguments",
+    "http"
+  ],
+  "bugs": {
+    "url": "https://github.com/guidesmiths/confusion/issues"
+  },
+  "homepage": "https://github.com/guidesmiths/confusion#readme"
 }
