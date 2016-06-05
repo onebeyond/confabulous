@@ -1,7 +1,7 @@
 {
-  "name": "confusion",
+  "name": "confabulous",
   "version": "0.1.0",
-  "description": "",
+  "description": "A hierarchical, asynchronous config loader and post processor",
   "main": "index.js",
   "scripts": {
     "example": "cd examples && SECRET='a password' NODE_ENV=development node index.js",
@@ -9,22 +9,18 @@
     "lint": "node_modules/.bin/eslint .",
     "prepush": "npm run lint && npm test"
   },
-  "author": "",
+  "author": "GuideSmiths Ltd",
   "license": "ISC",
   "dependencies": {
     "async": "^2.0.0-rc.5",
     "debug": "^2.2.0",
     "deep-freeze": "0.0.1",
     "flat": "^2.0.0",
-    "lodash": "^4.13.1",
     "lodash.contains": "^2.4.3",
     "lodash.find": "^4.4.0",
-    "lodash.has": "^4.4.0",
-    "lodash.map": "^4.4.0",
     "lodash.merge": "^4.4.0",
     "lodash.noop": "^3.0.1",
     "lodash.pick": "^4.2.1",
-    "lodash.reduce": "^4.4.0",
     "lodash.set": "^4.2.0",
     "minimist": "^1.2.0",
     "parse-duration": "^0.1.1",

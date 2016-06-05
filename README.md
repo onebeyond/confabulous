@@ -1,16 +1,14 @@
-[![Build Status](https://travis-ci.org/guidesmiths/confusion.png)](https://travis-ci.org/guidesmiths/confusion)
-
-# Confusion (Working Title)
-
-Confusion is a hierarchical config loader and post processor. It can load config from command line arguments, environment variables, files, web servers, databases, and even scm systems. It's easy to extend too. You can watch config sources for changes and apply post processors to do things like decrypt secrets or unflatten key/value pairs into structured objects.
+[![Build Status](https://travis-ci.org/guidesmiths/confabulous.png)](https://travis-ci.org/guidesmiths/confabulous)
+# Confabulous
+Confusion is a hierarchical, asynchronous config loader and post processor. It can load config from command line arguments, environment variables, files, web servers, databases, and even scm systems. It's easy to extend too. You can watch config sources for changes and apply post processors to do things like decrypt secrets or unflatten key/value pairs into structured objects.
 
 ## TL;DR
 ```
-var Confusion = require('..').Confusion
+var Confabulous = require('..').Confabulous
 var loaders = require('..').loaders
 var processors = require('..').processors
 
-new Confusion().add((config) => {
+new Confabulous().add((config) => {
     return loaders.require({ path: './conf/defaults.js', watch: true })
 }).add((config) => {
     return loaders.require({ path: `./conf/${process.env.NODE_ENV}.js`, watch: true })
@@ -40,7 +38,7 @@ Loaders are used to load config. Out of the box you can load config from command
 ### args
 Loads config from command line arguments
 ```
-new Confusion().add((config) => {
+new Confabulous().add((config) => {
     return loaders.args()
 })
 ```
@@ -49,7 +47,7 @@ You cannot watch command line arguments
 ### env
 Loads config from envrionment variables
 ```
-new Confusion().add((config) => {
+new Confabulous().add((config) => {
     return loaders.env()
 })
 ```
@@ -58,7 +56,7 @@ You cannot watch environment variables
 ### require
 Loads config from a .js or .json file
 ```
-new Confusion().add((config) => {
+new Confabulous().add((config) => {
     return loaders.require({ path: './conf/defaults.js' })
 })
 ```
@@ -70,7 +68,7 @@ new Confusion().add((config) => {
 ### file
 Loads config from the specified file. Files are read using the specified encoding (defaults to 'utf8'). Use a post processor if you want to convert them to json.
 ```
-new Confusion().add((config) => {
+new Confabulous().add((config) => {
     return loaders.file({ path: './conf/defaults.js' }, [
         processors.json()
     ])
@@ -86,7 +84,7 @@ new Confusion().add((config) => {
 ### http
 Requests config from a web server (expects JSON by default).
 ```
-new Confusion().add((config) => {
+new Confabulous().add((config) => {
     return loaders.http({ url: 'http://www.example.com/config' })
 })
 ```
@@ -94,7 +92,7 @@ new Confusion().add((config) => {
 |----------|--------|-----------|---------|
 | mandatory | boolean | true       | Causes an error/reload_error to be emitted if the configuration does not exist |
 | watch     | object  | undefined  | Watching is implemented by issuing HEAD requests and comparing the Etag and Last-Modified headers. You need to specify and interval in the configuration, e.g. ```{ watch: { interval: '5m' } }``` |
-| request   | object  | [see here](https://www.github.com/guidesmiths/confusion/tree/master/lib/loaders/http.js#13) | options that will be passed to [the underlying http client](https://github.com/request/request).
+| request   | object  | [see here](https://www.github.com/guidesmiths/confabulous/tree/master/lib/loaders/http.js#13) | options that will be passed to [the underlying http client](https://github.com/request/request).
 
 ## Post Processors
 Post processes can be used to transform or validate your configuration after it's been loaded. Out of the box you can unflatten config into structured documents,
@@ -103,7 +101,7 @@ parse json and decrypt content.
 #### mount
 Mounts the configuration at the specified key
 ```
-new Confusion().add((config) => {
+new Confabulous().add((config) => {
     return loaders.require({ path: './extra.json' }), [
         processors.mount({ key: 'move.to.here' })
     ])
@@ -113,7 +111,7 @@ new Confusion().add((config) => {
 #### unflatten
 Unflattens config into structured documents. Useful for command line arguments and environment variables.
 ```
-new Confusion().add((config) => {
+new Confabulous().add((config) => {
     return loaders.env(), [
         processors.unflatten()
     ])
@@ -123,7 +121,7 @@ new Confusion().add((config) => {
 #### json
 Parses text into JSON. Useful when you have more than one post processor
 ```
-new Confusion().add((config) => {
+new Confabulous().add((config) => {
     return loaders.file({ path: './config.json.encrypted' }, [
         processors.json()
     ])
@@ -133,7 +131,7 @@ new Confusion().add((config) => {
 #### decrypt
 Decrypts encrypted configuration.
 ```
-new Confusion().add((config) => {
+new Confabulous().add((config) => {
     return loaders.file({ path: './config.json.encrypted' }, [
         processors.decrypt({ algorithm: 'aes192', password: process.env.SECRET }),
         processors.json()
@@ -142,6 +140,6 @@ new Confusion().add((config) => {
 ```
 
 ### FAQ
-Q. Why doesn't Confusion notice new files.<br/>
-A. Because fs.watch problem doesn't notice them either. You can workaround by modifying some configuration watched by a different loader higher up in the confusion stack
+Q. Why doesn't Confabulous notice new files.<br/>
+A. Because fs.watch problem doesn't notice them either. You can workaround by modifying some configuration watched by a different loader higher up in the confabulous stack
 

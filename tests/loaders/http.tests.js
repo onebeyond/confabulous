@@ -7,16 +7,16 @@ describe('http', function() {
 
     var app
     var server
-    var confusion
+    var confabulous
 
     beforeEach(function() {
         app = express()
-        confusion = new EventEmitter()
+        confabulous = new EventEmitter()
     })
 
     afterEach(function(done) {
-        confusion.emit('reloading')
-        confusion.removeAllListeners()
+        confabulous.emit('reloading')
+        confabulous.removeAllListeners()
         try {
             server.close()
             done()
@@ -26,7 +26,7 @@ describe('http', function() {
     })
 
     it('should require url when mandatory', function(done) {
-        http()(confusion, function(err, config) {
+        http()(confabulous, function(err, config) {
             assert(err)
             assert.equal(err.message, 'url is required')
             done()
@@ -40,7 +40,7 @@ describe('http', function() {
         })
 
         server = app.listen(3000, function() {
-            http({ url: 'http://localhost:3000/config' })(confusion, function(err, config) {
+            http({ url: 'http://localhost:3000/config' })(confabulous, function(err, config) {
                 assert.ifError(err)
                 assert.equal(config.loaded, 'loaded')
                 done()
@@ -57,7 +57,7 @@ describe('http', function() {
         })
 
         server = app.listen(3000, function() {
-            http({ url: 'http://localhost:3000/config', request: { timeout: 100 } })(confusion, function(err, config) {
+            http({ url: 'http://localhost:3000/config', request: { timeout: 100 } })(confabulous, function(err, config) {
                 assert(err)
                 assert.equal(err.message, 'ETIMEDOUT')
                 done()
@@ -66,7 +66,7 @@ describe('http', function() {
     })
 
     it('should report errors', function(done) {
-        http({ url: 'http://localhost:9999/config' })(confusion, function(err, config) {
+        http({ url: 'http://localhost:9999/config' })(confabulous, function(err, config) {
             assert(err)
             assert.equal(err.message, 'connect ECONNREFUSED 127.0.0.1:9999')
             done()
@@ -79,7 +79,7 @@ describe('http', function() {
         })
 
         server = app.listen(3000, function() {
-            http({ url: 'http://localhost:3000/config' })(confusion, function(err, config) {
+            http({ url: 'http://localhost:3000/config' })(confabulous, function(err, config) {
                 assert(err)
                 assert.equal(err.message, 'http://localhost:3000/config returned 400')
                 done()
@@ -94,7 +94,7 @@ describe('http', function() {
         })
 
         server = app.listen(3000, function() {
-            http({ url: 'http://localhost:3000/config' })(confusion, function(err, config) {
+            http({ url: 'http://localhost:3000/config' })(confabulous, function(err, config) {
                 assert(err)
                 assert.equal(err.message, 'http://localhost:3000/config returned 404')
                 done()
@@ -108,7 +108,7 @@ describe('http', function() {
         })
 
         server = app.listen(3000, function() {
-            http({ url: 'http://localhost:3000/config', mandatory: false })(confusion, function(err, config) {
+            http({ url: 'http://localhost:3000/config', mandatory: false })(confabulous, function(err, config) {
                 assert.equal(err, true)
                 done()
             })
@@ -128,7 +128,7 @@ describe('http', function() {
         })
 
         server = app.listen(3000, function() {
-            http({ url: 'http://localhost:3000/config', watch: { interval: '100ms' } })(confusion, function(err, config) {
+            http({ url: 'http://localhost:3000/config', watch: { interval: '100ms' } })(confabulous, function(err, config) {
                 assert.ifError(err)
                 assert.equal(config.loaded, 'loaded')
             }).on('change', done)
@@ -151,7 +151,7 @@ describe('http', function() {
         })
 
         server = app.listen(3000, function() {
-            http({ url: 'http://localhost:3000/config', watch: { interval: '100ms' } })(confusion, function(err, config) {
+            http({ url: 'http://localhost:3000/config', watch: { interval: '100ms' } })(confabulous, function(err, config) {
                 assert.ifError(err)
                 assert.equal(config.loaded, 'loaded')
             }).on('change', done)
@@ -169,7 +169,7 @@ describe('http', function() {
         })
 
         server = app.listen(3000, function() {
-            http({ url: 'http://localhost:3000/config', mandatory: false, watch: { interval: '100ms' } })(confusion, function(err, config) {
+            http({ url: 'http://localhost:3000/config', mandatory: false, watch: { interval: '100ms' } })(confabulous, function(err, config) {
                 assert.ifError(err)
                 assert.equal(config.loaded, 'loaded')
             }).on('change', done)
@@ -187,7 +187,7 @@ describe('http', function() {
         })
 
         server = app.listen(3000, function() {
-            http({ url: 'http://localhost:3000/config', mandatory: false, watch: { interval: '100ms' } })(confusion, function(err, config) {
+            http({ url: 'http://localhost:3000/config', mandatory: false, watch: { interval: '100ms' } })(confabulous, function(err, config) {
                 assert.equal(err, true)
             }).on('change', done)
         })
@@ -210,7 +210,7 @@ describe('http', function() {
 
         server = app.listen(3000, function() {
             var events = 0
-            http({ url: 'http://localhost:3000/config', mandatory: false, watch: { interval: '100ms' } })(confusion, function(err, config) {
+            http({ url: 'http://localhost:3000/config', mandatory: false, watch: { interval: '100ms' } })(confabulous, function(err, config) {
                 assert.ifError(err)
                 assert.equal(config.loaded, 'loaded')
                 setTimeout(done, 500)
@@ -232,7 +232,7 @@ describe('http', function() {
 
         server = app.listen(3000, function() {
             var events = 0
-            http({ url: 'http://localhost:3000/config', mandatory: false, watch: { interval: '100ms' } })(confusion, function(err, config) {
+            http({ url: 'http://localhost:3000/config', mandatory: false, watch: { interval: '100ms' } })(confabulous, function(err, config) {
                 assert.ifError(err)
                 assert.equal(config.loaded, 'loaded')
                 setTimeout(done, 500)
@@ -257,11 +257,11 @@ describe('http', function() {
 
         server = app.listen(3000, function() {
             var events = 0
-            http({ url: 'http://localhost:3000/config', mandatory: false, watch: { interval: '100ms' }, request: { timeout: 100 } })(confusion, function(err, config) {
+            http({ url: 'http://localhost:3000/config', mandatory: false, watch: { interval: '100ms' }, request: { timeout: 100 } })(confabulous, function(err, config) {
                 assert.ifError(err)
                 assert.equal(config.loaded, 'loaded')
             }).on('error', function(err) {
-                confusion.emit('reloading')
+                confabulous.emit('reloading')
                 assert(err)
                 assert.equal(err.message, 'ETIMEDOUT')
                 done()
@@ -281,7 +281,7 @@ describe('http', function() {
                     config.loaded = config.loaded.toUpperCase()
                     cb(null, config)
                 }
-            ])(confusion, function(err, config) {
+            ])(confabulous, function(err, config) {
                 assert.ifError(err)
                 assert.equal(config.loaded, 'LOADED')
                 done()

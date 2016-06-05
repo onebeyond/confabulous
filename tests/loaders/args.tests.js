@@ -4,10 +4,10 @@ var EventEmitter = require('events').EventEmitter
 
 describe('args', function() {
 
-    var confusion = new EventEmitter()
+    var confabulous = new EventEmitter()
 
     it('should load arguments', function(done) {
-        args()(confusion, function(err, config) {
+        args()(confabulous, function(err, config) {
             assert.ifError(err)
             assert.equal(config.recursive, 'tests')
             done()
@@ -20,7 +20,7 @@ describe('args', function() {
                 config.recursive = config.recursive.toUpperCase()
                 cb(null, config)
             }
-        ])(confusion, function(err, config) {
+        ])(confabulous, function(err, config) {
             assert.ifError(err)
             assert.equal(config.recursive, 'TESTS')
             done()

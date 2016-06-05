@@ -1,9 +1,9 @@
 var noop = require('lodash.noop')
-var Confusion = require('..').Confusion
+var Confabulous = require('..').Confabulous
 var loaders = require('..').loaders
 var processors = require('..').processors
 
-new Confusion().add((config) => {
+new Confabulous().add((config) => {
     return loaders.env([
         processors.mount({ key: 'env' })
     ])
