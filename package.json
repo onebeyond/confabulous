@@ -1,6 +1,6 @@
 {
   "name": "confabulous",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "A hierarchical, asynchronous config loader and post processor",
   "main": "index.js",
   "scripts": {
