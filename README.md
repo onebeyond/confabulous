@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/guidesmiths/confabulous.png)](https://travis-ci.org/guidesmiths/confabulous)
 # Confabulous
-Confusion is a hierarchical, asynchronous config loader and post processor. It can load config from command line arguments, environment variables, files, web servers, databases, and even scm systems. It's easy to extend too. You can watch config sources for changes and apply post processors to do things like decrypt secrets or unflatten key/value pairs into structured objects.
+Confabulous is a hierarchical, asynchronous config loader and post processor. It can load config from command line arguments, environment variables, files, web servers, databases, and even scm systems. It's easy to extend too. You can watch config sources for changes and apply post processors to do things like decrypt secrets or unflatten key/value pairs into structured objects.
 
 ## TL;DR
 ```
