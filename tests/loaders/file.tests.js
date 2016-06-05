@@ -59,7 +59,7 @@ describe('file', function() {
             assert.equal(config.loaded, 'loaded')
             config.updated = new Date().toISOString()
             fs.writeFile('tests/data/config.json', JSON.stringify(config, null, 2))
-        }).on('change', done)
+        }).once('change', done)
     })
 
     it('should emit change event when file is deleted', function(done) {
@@ -67,7 +67,7 @@ describe('file', function() {
         file({ path: doomed, mandatory: false, watch: true })(confabulous, function(err, text) {
             assert.ifError(err)
             fs.unlink(doomed)
-        }).on('change', done)
+        }).once('change', done)
     })
 
     it('should post-process', function(done) {

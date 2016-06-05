@@ -57,19 +57,15 @@ describe('require', function() {
             assert.equal(config.loaded, 'loaded')
             config.updated = new Date().toISOString()
             fs.writeFile('tests/data/config.json', JSON.stringify(config, null, 2))
-        }).on('change', done)
+        }).once('change', done)
     })
 
-    it.only('should emit change event when file is deleted', function(done) {
+    it('should emit change event when file is deleted', function(done) {
         fs.writeFileSync(doomed, JSON.stringify({ foo: "bar" }))
         req({ path: doomed, mandatory: false, watch: true })(confabulous, function(err, config) {
             assert.ifError(err)
-            console.log('About to unlink', doomed)
             fs.unlink(doomed)
-        }).on('change', function() {
-            console.log('On Change')
-            setTimeout(done, 1000)
-        })
+        }).once('change', done)
     })
 
     it('should post-process', function(done) {
