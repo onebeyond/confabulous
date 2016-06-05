@@ -40,7 +40,7 @@ describe('file', function() {
     it('should report missing files when mandatory', function(done) {
         file({ path: 'does-not-exist.json' })(confabulous, function(err, config) {
             assert(err)
-            assert(/ENOENT: no such file or directory/.test(err.message), err.message)
+            assert(/ENOENT/.test(err.message), err.message)
             done()
         })
     })
