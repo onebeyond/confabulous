@@ -68,7 +68,7 @@ describe('http', function() {
     it('should report errors', function(done) {
         http({ url: 'http://localhost:9999/config' })(confabulous, function(err, config) {
             assert(err)
-            assert.equal(err.message, 'connect ECONNREFUSED 127.0.0.1:9999')
+            assert.ok(/connect ECONNREFUSED/.test(err.message))
             done()
         })
     })
