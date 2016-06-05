@@ -209,7 +209,6 @@ describe('http', function() {
         })
 
         server = app.listen(3000, function() {
-            var events = 0
             http({ url: 'http://localhost:3000/config', mandatory: false, watch: { interval: '100ms' } })(confabulous, function(err, config) {
                 assert.ifError(err)
                 assert.equal(config.loaded, 'loaded')
@@ -231,7 +230,6 @@ describe('http', function() {
         })
 
         server = app.listen(3000, function() {
-            var events = 0
             http({ url: 'http://localhost:3000/config', mandatory: false, watch: { interval: '100ms' } })(confabulous, function(err, config) {
                 assert.ifError(err)
                 assert.equal(config.loaded, 'loaded')
@@ -256,7 +254,6 @@ describe('http', function() {
         })
 
         server = app.listen(3000, function() {
-            var events = 0
             http({ url: 'http://localhost:3000/config', mandatory: false, watch: { interval: '100ms' }, request: { timeout: 100 } })(confabulous, function(err, config) {
                 assert.ifError(err)
                 assert.equal(config.loaded, 'loaded')
