@@ -43,7 +43,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/guidesmiths/confusion.git"
+    "url": "git+https://github.com/guidesmiths/confabulous.git"
   },
   "keywords": [
     "configuration",
@@ -59,7 +59,7 @@
     "http"
   ],
   "bugs": {
-    "url": "https://github.com/guidesmiths/confusion/issues"
+    "url": "https://github.com/guidesmiths/confabulous/issues"
   },
-  "homepage": "https://github.com/guidesmiths/confusion#readme"
+  "homepage": "https://github.com/guidesmiths/confabulous#readme"
 }
