@@ -6,6 +6,8 @@ var EventEmitter = require('events').EventEmitter
 describe('file', function() {
 
     var confabulous
+    var id = Math.floor(Math.random() * 10000000)
+    var doomed = 'tests/data/delete-me-' + id + '.json'
 
     beforeEach(function() {
         confabulous = new EventEmitter()
@@ -15,7 +17,7 @@ describe('file', function() {
         confabulous.emit('reloading')
         confabulous.removeAllListeners()
         fs.writeFileSync('tests/data/config.json', JSON.stringify({ loaded: "loaded" }, null, 2))
-        try { fs.unlinkSync('tests/data/delete-me.json') } catch(err) {}
+        try { fs.unlinkSync(doomed) } catch(err) {}
     })
 
     it('should require path when mandatory', function(done) {
@@ -61,10 +63,10 @@ describe('file', function() {
     })
 
     it('should emit change event when file is deleted', function(done) {
-        fs.writeFileSync('tests/data/delete-me.json', JSON.stringify({ foo: "bar" }))
-        file({ path: 'tests/data/delete-me.json', mandatory: false, watch: true })(confabulous, function(err, text) {
+        fs.writeFileSync(doomed, JSON.stringify({ foo: "bar" }))
+        file({ path: doomed, mandatory: false, watch: true })(confabulous, function(err, text) {
             assert.ifError(err)
-            fs.unlink('tests/data/delete-me.json')
+            fs.unlink(doomed)
         }).on('change', done)
     })
 
