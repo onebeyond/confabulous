@@ -60,12 +60,16 @@ describe('require', function() {
         }).on('change', done)
     })
 
-    it('should emit change event when file is deleted', function(done) {
+    it.only('should emit change event when file is deleted', function(done) {
         fs.writeFileSync(doomed, JSON.stringify({ foo: "bar" }))
         req({ path: doomed, mandatory: false, watch: true })(confabulous, function(err, config) {
             assert.ifError(err)
+            console.log('About to unlink', doomed)
             fs.unlink(doomed)
-        }).on('change', done)
+        }).on('change', function() {
+            console.log('On Change')
+            setTimeout(done, 1000)
+        })
     })
 
     it('should post-process', function(done) {
