@@ -28,7 +28,7 @@ new Confabulous()
 ```
 
 ## Loaders
-Loaders are used to load config. Out of the box you can load config from command line parameters, environment variables, files, and web servers. There's also an [etcd-loader](https://github.com/guidesmiths/confabulous-etcd-loader) and a [vault-loader](https://github.com/guidesmiths/confabulous-vault-loader)
+Loaders are used to load config. Out of the box you can load config from command line parameters, environment variables, files, and web servers. There's also an [etcd-loader](https://github.com/guidesmiths/confabulous-etcd-loader), a [vault-loader](https://github.com/guidesmiths/confabulous-vault-loader) and a [postgres-loader](https://github.com/guidesmiths/confabulous-postgres-loader)
 
 ### args
 Loads config from command line arguments
