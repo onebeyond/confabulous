@@ -19,7 +19,6 @@ new Confabulous()
         processors.json()
     ]))
     .add((config) => loaders.args())
-    .add((config) => loaders.http({ url: config.server.url, mandatory: false, watch: { interval: '5m' } }))
     .on('loaded', (config) => console.log('Loaded', JSON.stringify(config, null, 2)))
     .on('reloaded', (config) => console.log('Reloaded', JSON.stringify(config, null, 2)))
     .on('error', (err) => console.error('Error', err))
@@ -28,7 +27,12 @@ new Confabulous()
 ```
 
 ## Loaders
-Loaders are used to load config. Out of the box you can load config from command line parameters, environment variables, files, and web servers. There's also an [etcd-loader](https://github.com/guidesmiths/confabulous-etcd-loader), a [vault-loader](https://github.com/guidesmiths/confabulous-vault-loader) and a [postgres-loader](https://github.com/guidesmiths/confabulous-postgres-loader)
+Loaders are used to load config. Out of the box you can load config from command line parameters, environment variables, files, and web servers. The following loaders are proviced as separate modules
+
+* [http-loader](https://github.com/guidesmiths/confabulous-http-loader)
+* [etcd-loader](https://github.com/guidesmiths/confabulous-etcd-loader)
+* [vault-loader](https://github.com/guidesmiths/confabulous-vault-loader)
+* [postgres-loader](https://github.com/guidesmiths/confabulous-postgres-loader)
 
 ### args
 Loads config from command line arguments
@@ -74,20 +78,6 @@ new Confabulous().add((config) => {
 | mandatory | boolean | true     | Causes an error/reload_error to be emitted if the configuration does not exist |
 | watch     | boolean | undefined | Watching implemented via [fs.watch](https://nodejs.org/api/fs.html#fs_fs_watch_filename_options_listener). Be sure to read the caveats section if you encounter problems. |
 | encoding  | string  | utf8      | Specified the file encoding
-
-
-### http
-Requests config from a web server (expects JSON by default).
-```
-new Confabulous().add((config) => {
-    return loaders.http({ url: 'http://www.example.com/config' })
-})
-```
-|  Option  |  Type  |  Default  |  Notes  |
-|----------|--------|-----------|---------|
-| mandatory | boolean | true       | Causes an error/reload_error to be emitted if the configuration does not exist |
-| watch     | object  | undefined  | Watching is implemented by issuing HEAD requests and comparing the Etag and Last-Modified headers. You need to specify and interval in the configuration, e.g. ```{ watch: { interval: '5m' } }``` |
-| request   | object  | [see here](https://github.com/guidesmiths/confabulous/blob/master/lib/loaders/http.js#L14) | options that will be passed to [the underlying http client](https://github.com/request/request).
 
 ## Post Processors
 Post processes can be used to transform or validate your configuration after it's been loaded. Out of the box you can unflatten config into structured documents,
