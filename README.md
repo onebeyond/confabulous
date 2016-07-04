@@ -103,6 +103,16 @@ new Confabulous().add((config) => {
 })
 ```
 
+#### envToProp
+Converts environment variables in the form ```NODE_ENV``` to nested properties in the form ```node.env```
+```
+new Confabulous().add((config) => {
+    return loaders.env(), [
+        processors.envToProp()
+    ])
+})
+```
+
 #### json
 Parses text into JSON. Useful when you have more than one post processor
 ```
