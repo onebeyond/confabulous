@@ -4,30 +4,34 @@ Confabulous is a hierarchical, asynchronous config loader and post processor. It
 
 ## TL;DR
 ```
-const confabulous = require('confabulous')
-const Confabulous = confabulous.Confabulous
-const loaders = confabulous.loaders
-const processors = confabulous.processors
+const Confabulous = require('confabulous')
 
 new Confabulous()
-    .add((config) => loaders.env([ processors.mount({ key: 'env' }) ]))
-    .add((config) => loaders.require({ path: './conf/defaults.js', watch: true }))
-    .add((config) => loaders.require({ path: `./conf/${config.env.NODE_ENV}.js`, watch: true }))
-    .add((config) => loaders.require({ path: './conf/runtime.js', mandatory: false }))
-    .add((config) => loaders.file({ path: './conf/secret.json.encrypted' }, [
-        processors.decrypt({ algorithm: 'aes192', password: config.env.SECRET }),
-        processors.json()
-    ]))
-    .add((config) => loaders.args())
-    .on('loaded', (config) => console.log('Loaded', JSON.stringify(config, null, 2)))
-    .on('reloaded', (config) => console.log('Reloaded', JSON.stringify(config, null, 2)))
-    .on('error', (err) => console.error('Error', err))
-    .on('reload_error', (err) => console.error('Reload Error', err))
-    .end()
+    .add(config => loaders.require({ path: './conf/defaults.js' }))
+    .add(config => loaders.require({ path: `./conf/production.js` }))
+    .end((err, config) => {
+        // Your code goes here
+    })
 ```
 
+## Events
+### loaded
+Deprecated and not emitted when a callback is passed to the end function
+
+### error
+Deprecated and not emitted when a callback is passed to the end function
+
+### reloaded
+Emitted when confabulous successfully reloads a watched config.
+
+### reload_error
+Emitted when confabulous encounters an error reloading a watched config
+
+
+###
+
 ## Loaders
-Loaders are used to load config. Out of the box you can load config from command line parameters, environment variables, files, and web servers. The following loaders are proviced as separate modules
+Loaders are used to load config. Out of the box you can load config from command line parameters, environment variables and files. The following loaders are proviced as separate modules
 
 * [http-loader](https://github.com/guidesmiths/confabulous-http-loader)
 * [etcd-loader](https://github.com/guidesmiths/confabulous-etcd-loader)
@@ -61,6 +65,7 @@ new Confabulous().add((config) => {
 ```
 |  Option  |  Type  |  Default  |  Notes  |
 |----------|--------|-----------|---------|
+| path     | string | undefined   | The file to require |
 | mandatory | boolean | true      | Causes an error/reload_error to be emitted if the configuration does not exist |
 | watch     | boolean | undefined | Watching implemented via [fs.watch](https://nodejs.org/api/fs.html#fs_fs_watch_filename_options_listener). Be sure to read the caveats section if you encounter problems. |
 
@@ -75,6 +80,7 @@ new Confabulous().add((config) => {
 ```
 |  Option  |  Type  |  Default  |  Notes  |
 |----------|--------|-----------|---------|
+| path     | string | undefined  | The file to read |
 | mandatory | boolean | true     | Causes an error/reload_error to be emitted if the configuration does not exist |
 | watch     | boolean | undefined | Watching implemented via [fs.watch](https://nodejs.org/api/fs.html#fs_fs_watch_filename_options_listener). Be sure to read the caveats section if you encounter problems. |
 | encoding  | string  | utf8      | Specified the file encoding
@@ -136,5 +142,5 @@ new Confabulous().add((config) => {
 
 ### FAQ
 Q. Why doesn't Confabulous notice new files.<br/>
-A. Because fs.watch problem doesn't notice them either. You can workaround by modifying some configuration watched by a different loader higher up in the confabulous stack
+A. Because fs.watch doesn't notice them either. You can workaround by modifying some configuration watched by a different loader higher up in the confabulous stack
 
