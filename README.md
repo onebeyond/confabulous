@@ -9,7 +9,7 @@ const loaders = Confabulous.loaders
 
 new Confabulous()
     .add(config => loaders.require({ path: './conf/defaults.js' }))
-    .add(config => loaders.require({ path: `./conf/production.js` }))
+    .add(config => loaders.require({ path: './conf/production.js' }))
     .end((err, config) => {
         // Your code goes here
     })
