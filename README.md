@@ -5,6 +5,7 @@ Confabulous is a hierarchical, asynchronous config loader and post processor. It
 ## TL;DR
 ```
 const Confabulous = require('confabulous')
+const loaders = Confabulous.loaders
 
 new Confabulous()
     .add(config => loaders.require({ path: './conf/defaults.js' }))
@@ -26,9 +27,6 @@ Emitted when confabulous successfully reloads a watched config.
 
 ### reload_error
 Emitted when confabulous encounters an error reloading a watched config
-
-
-###
 
 ## Loaders
 Loaders are used to load config. Out of the box you can load config from command line parameters, environment variables and files. The following loaders are proviced as separate modules
