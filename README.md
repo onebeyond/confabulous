@@ -63,7 +63,7 @@ new Confabulous().add((config) => {
 ```
 |  Option  |  Type  |  Default  |  Notes  |
 |----------|--------|-----------|---------|
-| path     | string | undefined   | The file to require |
+| path     | string | undefined   | The javascript or json config file to be required |
 | mandatory | boolean | true      | Causes an error/reload_error to be emitted if the configuration does not exist |
 | watch     | boolean | undefined | Watching implemented via [fs.watch](https://nodejs.org/api/fs.html#fs_fs_watch_filename_options_listener). Be sure to read the caveats section if you encounter problems. |
 
@@ -78,7 +78,7 @@ new Confabulous().add((config) => {
 ```
 |  Option  |  Type  |  Default  |  Notes  |
 |----------|--------|-----------|---------|
-| path     | string | undefined  | The file to read |
+| path     | string | undefined  | The config file to be read |
 | mandatory | boolean | true     | Causes an error/reload_error to be emitted if the configuration does not exist |
 | watch     | boolean | undefined | Watching implemented via [fs.watch](https://nodejs.org/api/fs.html#fs_fs_watch_filename_options_listener). Be sure to read the caveats section if you encounter problems. |
 | encoding  | string  | utf8      | Specified the file encoding
