@@ -15,19 +15,6 @@ new Confabulous()
     })
 ```
 
-## Events
-### loaded
-Emitted when loading config for the first time. **Deprecated. Pass a callback to the ```end``` function instead.**
-
-### error
-Emitted when an error occurs loading config for the first time. **Deprecated. Pass a callback to the ```end``` function instead.**
-
-### reloaded
-Emitted when confabulous successfully reloads a watched config.
-
-### reload_error
-Emitted when confabulous encounters an error reloading a watched config
-
 ## Loaders
 Loaders are used to load config. Out of the box you can load config from command line parameters, environment variables and files. The following loaders are proviced as separate modules
 
@@ -137,6 +124,20 @@ new Confabulous().add((config) => {
     ])
 })
 ```
+
+## Events
+### loaded
+Emitted when loading config for the first time. **Deprecated. Pass a callback to the ```end``` function instead.**
+
+### error
+Emitted when an error occurs loading config for the first time. **Deprecated. Pass a callback to the ```end``` function instead.**
+
+### reloaded
+Emitted when confabulous successfully reloads a watched config.
+
+### reload_error
+Emitted when confabulous encounters an error reloading a watched config
+
 
 ### FAQ
 Q. Why doesn't Confabulous notice new files.<br/>
