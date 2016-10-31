@@ -17,10 +17,10 @@ new Confabulous()
 
 ## Events
 ### loaded
-Emitted when loading config for the first time. **Deprecated. Pass a callback to the ```end`` function instead.**
+Emitted when loading config for the first time. **Deprecated. Pass a callback to the ```end``` function instead.**
 
 ### error
-Emitted when an error occurs loading config for the first time. **Deprecated. Pass a callback to the ```end`` function instead.**
+Emitted when an error occurs loading config for the first time. **Deprecated. Pass a callback to the ```end``` function instead.**
 
 ### reloaded
 Emitted when confabulous successfully reloads a watched config.
