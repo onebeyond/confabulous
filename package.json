@@ -16,8 +16,8 @@
     "debug": "^2.2.0",
     "deep-freeze": "0.0.1",
     "flat": "^2.0.0",
-    "lodash.merge": "^4.4.0",
     "lodash.set": "^4.2.0",
+    "merge": "^1.2.0",
     "minimist": "^1.2.0",
     "require-all": "^2.0.0",
     "safe-json-parse": "^4.0.0"
