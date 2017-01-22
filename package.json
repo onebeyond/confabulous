@@ -18,6 +18,7 @@
     "deep-freeze": "0.0.1",
     "flat": "^2.0.0",
     "lodash.set": "^4.2.0",
+    "lodash.has": "^4.2.0",
     "merge": "^1.2.0",
     "minimist": "^1.2.0",
     "require-all": "^2.0.0",
