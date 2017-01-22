@@ -2,12 +2,7 @@ engines:
   eslint:
     enabled: false
   duplication:
-    enabled: true
-    config:
-      languages:
-      - javascript
-    exclude_paths:
-      - test/**
+    enabled: false
 
 ratings:
   paths:
