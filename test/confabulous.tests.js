@@ -9,8 +9,9 @@ describe('Confabulous', function() {
         const loaders = Confabulous.loaders
 
         new Confabulous()
-            .add(config => loaders.require({ path: './test/data/config.json', mandatory: true }))
-            .end((err, config) => {
+            .add(function(config) {
+                return loaders.require({ path: './test/data/config.json', mandatory: true })
+            }).end((err, config) => {
                 assert.ifError(err)
                 assert.equal(config.loaded, 'loaded')
                 done()
@@ -22,8 +23,9 @@ describe('Confabulous', function() {
         const loaders = Confabulous.loaders
 
         new Confabulous()
-            .add(config => loaders.require({ path: './test/data/config.json', mandatory: true }))
-            .end((err, config) => {
+            .add(function(config) {
+                return loaders.require({ path: './test/data/config.json', mandatory: true })
+            }).end((err, config) => {
                 assert.ifError(err)
                 config.frozen = true
                 assert.equal(config.frozen, undefined)
@@ -36,8 +38,9 @@ describe('Confabulous', function() {
         const loaders = Confabulous.loaders
 
         new Confabulous()
-            .add(config => loaders.require({ path: './test/data/config.json', mandatory: true }))
-            .on('loaded', config => {
+            .add(function(config) {
+                return loaders.require({ path: './test/data/config.json', mandatory: true })
+            }).on('loaded', config => {
                 assert.equal(config.loaded, 'loaded')
                 done()
             }).end()
@@ -48,8 +51,9 @@ describe('Confabulous', function() {
         const loaders = Confabulous.loaders
 
         new Confabulous()
-            .add(config => loaders.require({ path: './test/data/missing.json', mandatory: true }))
-            .on('error', err => {
+            .add(function(config) {
+                return loaders.require({ path: './test/data/missing.json', mandatory: true })
+            }).on('error', err => {
                 assert.ok(err)
                 assert.ok(/ENOENT: no such file or directory/.test(err.message))
                 done()
@@ -61,8 +65,9 @@ describe('Confabulous', function() {
         const loaders = Confabulous.loaders
 
         const confabulous = new Confabulous()
-            .add(config => loaders.file({ path: './test/data/config.json', mandatory: true, watch: true }))
-            .end()
+            .add(function(config) {
+                return loaders.file({ path: './test/data/config.json', mandatory: true, watch: true })
+            }).end()
 
         confabulous.on('reloaded', config => {
             confabulous.removeAllListeners('reloaded')
