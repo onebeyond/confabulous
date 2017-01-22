@@ -6,7 +6,8 @@
   "scripts": {
     "example": "cd examples && SECRET='a password' NODE_ENV=development node index.js",
     "test": "mocha",
-    "istanbul": "istanbul cover --report html _mocha",
+    "istanbul": "istanbul cover --report html --report lcov _mocha",
+    "codeclimate": "codeclimate-test-reporter < coverage/lcov.info",
     "lint": "eslint .",
     "prepush": "npm run lint && npm test"
   },
