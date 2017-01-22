@@ -1,28 +1,29 @@
 var assert = require('chai').assert
-var args = require('../../lib/loaders/args')
+var env = require('../../lib/loaders/env')
 var EventEmitter = require('events').EventEmitter
 
-describe('args', function() {
+describe('env', function() {
 
     var confabulous = new EventEmitter()
 
-    it('should load arguments', function(done) {
-        args()(confabulous, function(err, config) {
+    it('should load environment variables', function(done) {
+        env()(confabulous, function(err, config) {
             assert.ifError(err)
-            assert.equal(config.recursive, 'tests')
+            console.log(config)
+            assert.equal(config.LOADED_MOCHA_OPTS, 'true')
             done()
         })
     })
 
     it('should post-process', function(done) {
-        args([
+        env([
             function(config, cb) {
-                config.recursive = config.recursive.toUpperCase()
+                config.LOADED_MOCHA_OPTS = config.LOADED_MOCHA_OPTS.toUpperCase()
                 cb(null, config)
             }
         ])(confabulous, function(err, config) {
             assert.ifError(err)
-            assert.equal(config.recursive, 'TESTS')
+            assert.equal(config.LOADED_MOCHA_OPTS, 'TRUE')
             done()
         })
     })

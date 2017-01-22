@@ -7,7 +7,7 @@ describe('require', function() {
 
     var confabulous
     var id = Math.floor(Math.random() * 10000000)
-    var doomed = 'tests/data/delete-me-' + id + '.json'
+    var doomed = 'test/data/delete-me-' + id + '.json'
 
     beforeEach(function() {
         confabulous = new EventEmitter()
@@ -16,7 +16,7 @@ describe('require', function() {
     afterEach(function() {
         confabulous.emit('reloading')
         confabulous.removeAllListeners()
-        fs.writeFileSync('tests/data/config.json', JSON.stringify({ loaded: "loaded" }, null, 2))
+        fs.writeFileSync('test/data/config.json', JSON.stringify({ loaded: "loaded" }, null, 2))
         try { fs.unlinkSync(doomed) } catch(err) {}
     })
 
@@ -29,7 +29,7 @@ describe('require', function() {
     })
 
     it('should load configuration', function(done) {
-        req({ path: 'tests/data/config.json' })(confabulous, function(err, config) {
+        req({ path: 'test/data/config.json' })(confabulous, function(err, config) {
             assert.ifError(err)
             assert.equal(config.loaded, 'loaded')
             done()
@@ -52,11 +52,11 @@ describe('require', function() {
     })
 
     it('should emit change event when content changes', function(done) {
-        req({ path: 'tests/data/config.json', watch: true })(confabulous, function(err, config) {
+        req({ path: 'test/data/config.json', watch: true })(confabulous, function(err, config) {
             assert.ifError(err)
             assert.equal(config.loaded, 'loaded')
             config.updated = new Date().toISOString()
-            fs.writeFile('tests/data/config.json', JSON.stringify(config, null, 2))
+            fs.writeFile('test/data/config.json', JSON.stringify(config, null, 2))
         }).once('change', done)
     })
 
@@ -70,7 +70,7 @@ describe('require', function() {
 
     it('should post-process', function(done) {
 
-        req({ path: 'tests/data/config.json' }, [
+        req({ path: 'test/data/config.json' }, [
             function(config, cb) {
                 config.loaded = config.loaded.toUpperCase()
                 cb(null, config)

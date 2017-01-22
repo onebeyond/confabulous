@@ -7,7 +7,7 @@ describe('file', function() {
 
     var confabulous
     var id = Math.floor(Math.random() * 10000000)
-    var doomed = 'tests/data/delete-me-' + id + '.json'
+    var doomed = 'test/data/delete-me-' + id + '.json'
 
     beforeEach(function() {
         confabulous = new EventEmitter()
@@ -16,7 +16,7 @@ describe('file', function() {
     afterEach(function() {
         confabulous.emit('reloading')
         confabulous.removeAllListeners()
-        fs.writeFileSync('tests/data/config.json', JSON.stringify({ loaded: "loaded" }, null, 2))
+        fs.writeFileSync('test/data/config.json', JSON.stringify({ loaded: "loaded" }, null, 2))
         try { fs.unlinkSync(doomed) } catch(err) {}
     })
 
@@ -29,7 +29,7 @@ describe('file', function() {
     })
 
     it('should load configuration', function(done) {
-        file({ path: 'tests/data/config.json' })(confabulous, function(err, text) {
+        file({ path: 'test/data/config.json' })(confabulous, function(err, text) {
             assert.ifError(err)
             var config = JSON.parse(text)
             assert.equal(config.loaded, 'loaded')
@@ -53,12 +53,12 @@ describe('file', function() {
     })
 
     it('should emit change event when content changes', function(done) {
-        file({ path: 'tests/data/config.json', watch: true })(confabulous, function(err, text) {
+        file({ path: 'test/data/config.json', watch: true })(confabulous, function(err, text) {
             assert.ifError(err)
             var config = JSON.parse(text)
             assert.equal(config.loaded, 'loaded')
             config.updated = new Date().toISOString()
-            fs.writeFile('tests/data/config.json', JSON.stringify(config, null, 2))
+            fs.writeFile('test/data/config.json', JSON.stringify(config, null, 2))
         }).once('change', done)
     })
 
@@ -72,7 +72,7 @@ describe('file', function() {
 
     it('should post-process', function(done) {
 
-        file({ path: 'tests/data/config.json' }, [
+        file({ path: 'test/data/config.json' }, [
             function(text, cb) {
                 cb(null, JSON.parse(text))
             }

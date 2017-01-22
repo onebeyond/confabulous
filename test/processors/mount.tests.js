@@ -8,4 +8,10 @@ describe('mount', function() {
             assert.equal(config.foo.bar.baz, 1)
         })
     })
+    it('should validate key', function() {
+        mount({})({ baz: 1 }, function(err, config) {
+            assert.ok(err)
+            assert.equal(err.message, 'key is required')
+        })
+    })
 })
