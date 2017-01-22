@@ -55,7 +55,7 @@ describe('Confabulous', function() {
                 return loaders.require({ path: './test/data/missing.json', mandatory: true })
             }).on('error', function(err) {
                 assert.ok(err)
-                assert.ok(/ENOENT: no such file or directory/.test(err.message))
+                assert.ok(/ENOENT/.test(err.message), err.message)
                 done()
             }).end()
     })
