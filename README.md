@@ -11,7 +11,7 @@ Confabulous is a hierarchical, asynchronous config loader and post processor. It
 [![devDependencies Status](https://david-dm.org/guidesmiths/confabulous/dev-status.svg)](https://david-dm.org/guidesmiths/confabulous?type=dev)
 
 ## TL;DR
-```
+```js
 const Confabulous = require('confabulous')
 const loaders = Confabulous.loaders
 
@@ -33,7 +33,7 @@ Loaders are used to load config. Out of the box you can load config from command
 
 ### args
 Loads config from command line arguments
-```
+```js
 new Confabulous().add((config) => {
     return loaders.args()
 })
@@ -42,7 +42,7 @@ You cannot watch command line arguments
 
 ### env
 Loads config from envrionment variables
-```
+```js
 new Confabulous().add((config) => {
     return loaders.env()
 })
@@ -51,7 +51,7 @@ You cannot watch environment variables
 
 ### require
 Loads config from a .js or .json file
-```
+```js
 new Confabulous().add((config) => {
     return loaders.require({ path: './conf/defaults.js' })
 })
@@ -64,7 +64,7 @@ new Confabulous().add((config) => {
 
 ### file
 Loads config from the specified file. Files are read using the specified encoding (defaults to 'utf8'). Use a post processor if you want to convert them to json.
-```
+```js
 new Confabulous().add((config) => {
     return loaders.file({ path: './conf/defaults.js' }, [
         processors.json()
@@ -84,7 +84,7 @@ parse json and decrypt content.
 
 #### mount
 Mounts the configuration at the specified key
-```
+```js
 new Confabulous().add((config) => {
     return loaders.require({ path: './extra.json' }), [
         processors.mount({ key: 'move.to.here' })
@@ -94,7 +94,7 @@ new Confabulous().add((config) => {
 
 #### unflatten
 Unflattens config into structured documents. Useful for command line arguments and environment variables.
-```
+```js
 new Confabulous().add((config) => {
     return loaders.env(), [
         processors.unflatten()
@@ -104,7 +104,7 @@ new Confabulous().add((config) => {
 
 #### envToProp
 Converts environment variables in the form ```NODE_ENV``` to nested properties in the form ```node.env```
-```
+```js
 new Confabulous().add((config) => {
     return loaders.env(), [
         processors.envToProp()
@@ -114,7 +114,7 @@ new Confabulous().add((config) => {
 
 #### json
 Parses text into JSON. Useful when you have more than one post processor
-```
+```js
 new Confabulous().add((config) => {
     return loaders.file({ path: './config.json.encrypted' }, [
         processors.json()
@@ -124,7 +124,7 @@ new Confabulous().add((config) => {
 
 #### decrypt
 Decrypts encrypted configuration.
-```
+```js
 new Confabulous().add((config) => {
     return loaders.file({ path: './config.json.encrypted' }, [
         processors.decrypt({ algorithm: 'aes192', password: process.env.SECRET }),
@@ -145,7 +145,6 @@ Emitted when confabulous successfully reloads a watched config.
 
 ### reload_error
 Emitted when confabulous encounters an error reloading a watched config
-
 
 ### FAQ
 Q. Why doesn't Confabulous notice new files.<br/>
