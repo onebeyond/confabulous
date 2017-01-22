@@ -11,7 +11,7 @@ describe('Confabulous', function() {
         new Confabulous()
             .add(function(config) {
                 return loaders.require({ path: './test/data/config.json', mandatory: true })
-            }).end((err, config) => {
+            }).end(function(err, config) {
                 assert.ifError(err)
                 assert.equal(config.loaded, 'loaded')
                 done()
@@ -25,7 +25,7 @@ describe('Confabulous', function() {
         new Confabulous()
             .add(function(config) {
                 return loaders.require({ path: './test/data/config.json', mandatory: true })
-            }).end((err, config) => {
+            }).end(function(err, config) {
                 assert.ifError(err)
                 config.frozen = true
                 assert.equal(config.frozen, undefined)
@@ -40,7 +40,7 @@ describe('Confabulous', function() {
         new Confabulous()
             .add(function(config) {
                 return loaders.require({ path: './test/data/config.json', mandatory: true })
-            }).on('loaded', config => {
+            }).on('loaded', function(config) {
                 assert.equal(config.loaded, 'loaded')
                 done()
             }).end()
@@ -53,7 +53,7 @@ describe('Confabulous', function() {
         new Confabulous()
             .add(function(config) {
                 return loaders.require({ path: './test/data/missing.json', mandatory: true })
-            }).on('error', err => {
+            }).on('error', function(err) {
                 assert.ok(err)
                 assert.ok(/ENOENT: no such file or directory/.test(err.message))
                 done()
@@ -69,7 +69,7 @@ describe('Confabulous', function() {
                 return loaders.file({ path: './test/data/config.json', mandatory: true, watch: true })
             }).end()
 
-        confabulous.on('reloaded', config => {
+        confabulous.on('reloaded', function(config) {
             confabulous.removeAllListeners('reloaded')
             done()
         })
