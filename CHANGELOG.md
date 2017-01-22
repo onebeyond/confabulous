@@ -1,6 +1,6 @@
 # Change Log
 
-## [Unreleased]
+## [1.1.2]
 ### [Changed]
 - Updated package.json keywords
 
