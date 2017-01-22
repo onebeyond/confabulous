@@ -1,6 +1,6 @@
 # Change Log
 
-## [Unreleased]
+## [1.1.1]
 ### [Added]
 - Increasing test coverage
 - This changelog
