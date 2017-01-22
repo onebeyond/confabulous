@@ -55,6 +55,10 @@
     "command",
     "line",
     "arguments",
+    "http",
+    "vault",
+    "etcd",
+    "postgres",
     "http"
   ],
   "bugs": {
