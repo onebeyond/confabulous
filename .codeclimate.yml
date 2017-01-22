@@ -6,7 +6,10 @@ engines:
     config:
       languages:
       - javascript
+    exclude_paths:
+      - test/**
 
 ratings:
   paths:
   - lib/**
+
