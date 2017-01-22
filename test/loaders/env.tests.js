@@ -9,7 +9,6 @@ describe('env', function() {
     it('should load environment variables', function(done) {
         env()(confabulous, function(err, config) {
             assert.ifError(err)
-            console.log(config)
             assert.equal(config.LOADED_MOCHA_OPTS, 'true')
             done()
         })

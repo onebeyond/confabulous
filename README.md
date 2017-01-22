@@ -1,6 +1,14 @@
-[![Build Status](https://travis-ci.org/guidesmiths/confabulous.png)](https://travis-ci.org/guidesmiths/confabulous)
 # Confabulous
 Confabulous is a hierarchical, asynchronous config loader and post processor. It can load config from command line arguments, environment variables, files, web servers, databases, and even scm systems. It's easy to extend too. You can watch config sources for changes and apply post processors to do things like decrypt secrets or unflatten key/value pairs into structured objects.
+
+[![NPM version](https://img.shields.io/npm/v/confabulous.svg?style=flat-square)](https://www.npmjs.com/package/confabulous)
+[![NPM downloads](https://img.shields.io/npm/dm/confabulous.svg?style=flat-square)](https://www.npmjs.com/package/confabulous)
+[![Build Status](https://img.shields.io/travis/guidesmiths/confabulous/master.svg)](https://travis-ci.org/guidesmiths/confabulous)
+[![Code Climate](https://codeclimate.com/github/guidesmiths/confabulous/badges/gpa.svg)](https://codeclimate.com/github/guidesmiths/confabulous)
+[![Test Coverage](https://codeclimate.com/github/guidesmiths/confabulous/badges/coverage.svg)](https://codeclimate.com/github/guidesmiths/confabulous/coverage)
+[![Code Style](https://img.shields.io/badge/code%20style-imperative-brightgreen.svg)](https://github.com/guidesmiths/eslint-config-imperative)
+[![Dependency Status](https://david-dm.org/guidesmiths/confabulous.svg)](https://david-dm.org/guidesmiths/confabulous)
+[![devDependencies Status](https://david-dm.org/guidesmiths/confabulous/dev-status.svg)](https://david-dm.org/guidesmiths/confabulous?type=dev)
 
 ## TL;DR
 ```

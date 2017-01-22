@@ -25,12 +25,12 @@
     "safe-json-parse": "^4.0.0"
   },
   "devDependencies": {
-    "lodash.noop": "^3.0.1",
     "chai": "^3.5.0",
     "eslint": "^0.23.0",
     "eslint-config-imperative": "0.0.6",
     "eslint-plugin-imperative": "0.0.2",
     "husky": "^0.11.4",
+    "lodash.noop": "^3.0.1",
     "mocha": "^2.5.3"
   },
   "directories": {
@@ -57,5 +57,5 @@
   "bugs": {
     "url": "https://github.com/guidesmiths/confabulous/issues"
   },
-  "homepage": "https://github.com/guidesmiths/confabulous#readme"
+  "homepage": "https://guidesmiths.github.io/confabulous/"
 }
