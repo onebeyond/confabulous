@@ -1,5 +1,9 @@
 # Change Log
 
+## [1.1.3]
+### Changed
+- Updated package.json description
+
 ## [1.1.2]
 ### [Changed]
 - Updated package.json keywords
