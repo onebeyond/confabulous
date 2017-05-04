@@ -1,5 +1,9 @@
 # Change Log
 
+## [1.2.0]
+### Added
+- envToCamelCaseProps processor
+
 ## [1.1.3]
 ### Changed
 - Updated package.json description
