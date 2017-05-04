@@ -34,7 +34,7 @@ Loaders are used to load config. Out of the box you can load config from command
 ### args
 Loads config from command line arguments
 ```js
-new Confabulous().add((config) => {
+new Confabulous().add(config => {
     return loaders.args()
 })
 ```
@@ -43,7 +43,7 @@ You cannot watch command line arguments
 ### env
 Loads config from envrionment variables
 ```js
-new Confabulous().add((config) => {
+new Confabulous().add(config => {
     return loaders.env()
 })
 ```
@@ -52,7 +52,7 @@ You cannot watch environment variables
 ### require
 Loads config from a .js or .json file
 ```js
-new Confabulous().add((config) => {
+new Confabulous().add(config => {
     return loaders.require({ path: './conf/defaults.js' })
 })
 ```
@@ -65,7 +65,7 @@ new Confabulous().add((config) => {
 ### file
 Loads config from the specified file. Files are read using the specified encoding (defaults to 'utf8'). Use a post processor if you want to convert them to json.
 ```js
-new Confabulous().add((config) => {
+new Confabulous().add(config => {
     return loaders.file({ path: './conf/defaults.js' }, [
         processors.json()
     ])
@@ -85,7 +85,7 @@ parse json and decrypt content.
 #### mount
 Mounts the configuration at the specified key
 ```js
-new Confabulous().add((config) => {
+new Confabulous().add(config => {
     return loaders.require({ path: './extra.json' }), [
         processors.mount({ key: 'move.to.here' })
     ])
@@ -95,7 +95,7 @@ new Confabulous().add((config) => {
 #### unflatten
 Unflattens config into structured documents. Useful for command line arguments and environment variables.
 ```js
-new Confabulous().add((config) => {
+new Confabulous().add(config => {
     return loaders.env(), [
         processors.unflatten()
     ])
@@ -103,11 +103,53 @@ new Confabulous().add((config) => {
 ```
 
 #### envToProp
-Converts environment variables in the form ```NODE_ENV``` to nested properties in the form ```node.env```
+Converts environment variables in the form ```NODE_ENV=test``` to nested properties in the form ```{ node: { env: "test" } }```
 ```js
-new Confabulous().add((config) => {
+new Confabulous().add(config => {
     return loaders.env(), [
         processors.envToProp()
+    ])
+})
+```
+If you want to prefix your environment variables with an application discriminator you can also strip the prefix.
+```js
+new Confabulous().add(config => {
+    return loaders.env(), [
+        processors.envToProp({ prefix: 'GS_' }) // GS_SERVER_PORT => server.port
+    ])
+})
+```
+You can also filter environment variables to include only those you want
+```js
+new Confabulous().add(config => {
+    return loaders.env(), [
+        processors.envToProp({ filter: /^GS_/ }) // Only include environment variables starting with GS_
+    ])
+})
+```
+
+#### envToCamelCaseProp
+Converts environment variables in the form ```USER__FIRST_NAME=fred``` to nested properties in the form ```{ user: { firstName: "fred" } }```
+```js
+new Confabulous().add(config => {
+    return loaders.env(), [
+        processors.envToCamelCaseProp()
+    ])
+})
+```
+If you want to prefix your environment variables with an application discriminator you can also strip the prefix.
+```js
+new Confabulous().add(config => {
+    return loaders.env(), [
+        processors.envToCamelCaseProp({ prefix: 'GS_' }) // GS_SERVER_PORT => server.port
+    ])
+})
+```
+You can also filter environment variables to include only those you want
+```js
+new Confabulous().add(config => {
+    return loaders.env(), [
+        processors.envToCamelCaseProp({ filter: /^GS_/ }) // Only include environment variables starting with GS_
     ])
 })
 ```
@@ -115,7 +157,7 @@ new Confabulous().add((config) => {
 #### json
 Parses text into JSON. Useful when you have more than one post processor
 ```js
-new Confabulous().add((config) => {
+new Confabulous().add(config => {
     return loaders.file({ path: './config.json.encrypted' }, [
         processors.json()
     ])
@@ -125,7 +167,7 @@ new Confabulous().add((config) => {
 #### decrypt
 Decrypts encrypted configuration.
 ```js
-new Confabulous().add((config) => {
+new Confabulous().add(config => {
     return loaders.file({ path: './config.json.encrypted' }, [
         processors.decrypt({ algorithm: 'aes192', password: process.env.SECRET }),
         processors.json()
