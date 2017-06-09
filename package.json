@@ -27,12 +27,12 @@
     "safe-json-parse": "^4.0.0"
   },
   "devDependencies": {
-    "chai": "^3.5.0",
-    "codeclimate-test-reporter": "^0.4.1",
+    "chai": "^4.0.2",
+    "codeclimate-test-reporter": "^0.5.0",
     "eslint": "^3.12.2",
     "eslint-config-imperative": "^1.0.0",
     "eslint-plugin-imperative": "^1.0.0",
-    "husky": "^0.12.0",
+    "husky": "^0.13.4",
     "istanbul": "^0.4.5",
     "lodash.noop": "^3.0.1",
     "mocha": "^3.2.0"
