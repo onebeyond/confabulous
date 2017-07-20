@@ -1,5 +1,4 @@
 var assert = require('chai').assert
-var exec = require('child_process').exec;
 var Confabulous = require('..')
 
 describe('Confabulous', function() {
@@ -58,24 +57,5 @@ describe('Confabulous', function() {
                 assert.ok(/ENOENT/.test(err.message), err.message)
                 done()
             }).end()
-    })
-
-    xit('should emit reload event', function(done) {
-
-        const loaders = Confabulous.loaders
-
-        const confabulous = new Confabulous()
-            .add(function(config) {
-                return loaders.file({ path: './test/data/config.json', mandatory: true, watch: true })
-            }).end()
-
-        confabulous.on('reloaded', function(config) {
-            confabulous.removeAllListeners('reloaded')
-            done()
-        })
-
-        exec('touch ./test/data/config.json', function(err) {
-            assert.ifError(err)
-        })
     })
 })

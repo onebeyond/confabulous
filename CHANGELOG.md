@@ -1,5 +1,11 @@
 # Change Log
 
+## [1.4.0]
+### Added
+- Codeclimate automation on push
+### Changed
+- Upgraded dev dependencies
+
 ## [1.3.0]
 ### Changed
 - Updated dev dependencies
