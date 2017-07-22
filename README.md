@@ -23,6 +23,13 @@ new Confabulous()
     })
 ```
 
+## Merging
+Confabulous automatically merges (and subsequently freezes) configuration from multiple sources. If you want to override the behaviour you can supply your own merge function, providing is varardic and favours the right most parameter, e.g.
+```js
+new Confabulous({ merge: customMergeFn })
+
+```
+
 ## Loaders
 Loaders are used to load config. Out of the box you can load config from command line parameters, environment variables and files. The following loaders are proviced as separate modules
 

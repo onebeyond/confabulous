@@ -9,7 +9,7 @@ describe('Confabulous', function() {
 
         new Confabulous()
             .add(function(config) {
-                return loaders.require({ path: './test/data/config.json', mandatory: true })
+                return loaders.echo({ loaded: 'loaded' })
             }).end(function(err, config) {
                 assert.ifError(err)
                 assert.equal(config.loaded, 'loaded')
@@ -17,13 +17,51 @@ describe('Confabulous', function() {
             })
     })
 
+    it('should recursively merge config', function(done) {
+
+        const loaders = Confabulous.loaders
+
+        new Confabulous()
+            .add(function(config) {
+                return loaders.echo({ loaded: 'loaded', nested: { items: [1] } })
+            })
+            .add(function(config) {
+                return loaders.echo({ loaded: 'overridden', nested: { items: [2] } })
+            }).end(function(err, config) {
+                assert.ifError(err)
+                assert.equal(config.loaded, 'overridden')
+                assert.equal(config.nested.items.length, 1)
+                assert.equal(config.nested.items[0], 2)
+                done()
+            })
+    })
+
+    it('should support custom merge functions', function(done) {
+
+        const loaders = Confabulous.loaders
+        const merge = function() { return 'merged' }
+
+        new Confabulous({ merge: merge })
+            .add(function(config) {
+                return loaders.echo({ loaded: 'loaded' })
+            })
+            .add(function(config) {
+                return loaders.echo({ loaded: 'overriden' })
+            }).end(function(err, config) {
+                assert.ifError(err)
+                assert.equal(config, 'merged')
+                done()
+            })
+    })
+
+
     it('should freeze config', function(done) {
 
         const loaders = Confabulous.loaders
 
         new Confabulous()
             .add(function(config) {
-                return loaders.require({ path: './test/data/config.json', mandatory: true })
+                return loaders.echo({ loaded: 'loaded' })
             }).end(function(err, config) {
                 assert.ifError(err)
                 config.frozen = true
@@ -38,7 +76,7 @@ describe('Confabulous', function() {
 
         new Confabulous()
             .add(function(config) {
-                return loaders.require({ path: './test/data/config.json', mandatory: true })
+                return loaders.echo({ loaded: 'loaded' })
             }).on('loaded', function(config) {
                 assert.equal(config.loaded, 'loaded')
                 done()

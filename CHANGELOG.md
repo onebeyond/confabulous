@@ -1,5 +1,9 @@
 # Change Log
 
+## [1.5.0]
+### Added
+- Support for custom merges
+
 ## [1.4.0]
 ### Added
 - Codeclimate automation on push
