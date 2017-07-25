@@ -14,28 +14,28 @@
   "author": "GuideSmiths Ltd",
   "license": "ISC",
   "dependencies": {
-    "async": "^2.0.0-rc.5",
+    "async": "^2.5.0",
     "camelize": "^1.0.0",
-    "debug": "^2.2.0",
+    "debug": "^2.6.8",
     "deep-freeze": "0.0.1",
-    "flat": "^2.0.0",
-    "lodash.has": "^4.2.0",
-    "lodash.set": "^4.2.0",
+    "flat": "^4.0.0",
+    "lodash.has": "^4.5.2",
+    "lodash.set": "^4.3.2",
     "merge": "^1.2.0",
     "minimist": "^1.2.0",
     "require-all": "^2.0.0",
     "safe-json-parse": "^4.0.0"
   },
   "devDependencies": {
-    "chai": "^4.0.2",
+    "chai": "^4.1.0",
     "codeclimate-test-reporter": "^0.5.0",
-    "eslint": "^4.2.0",
+    "eslint": "^4.3.0",
     "eslint-config-imperative": "^2.0.1",
     "eslint-plugin-imperative": "^2.0.0",
     "husky": "^0.14.3",
     "istanbul": "^0.4.5",
     "lodash.noop": "^3.0.1",
-    "mocha": "^3.2.0"
+    "mocha": "^3.4.2"
   },
   "directories": {
     "example": "examples",
