@@ -1,12 +1,11 @@
 # Change Log
 
-## [1.6.0]
-### Updated
-- Dependencies
-
 ## [1.5.0]
 ### Added
 - Support for custom merges
+
+### Updated
+- Dependencies
 
 ## [1.4.0]
 ### Added
