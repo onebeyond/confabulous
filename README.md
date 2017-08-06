@@ -24,19 +24,15 @@ new Confabulous()
 ```
 
 ## Merging
-Confabulous automatically merges (and subsequently freezes) configuration from multiple sources. If you want to override the behaviour you can supply your own merge function, providing is varardic and favours the right most parameter, e.g.
+Confabulous automatically merges (and subsequently freezes) configuration from multiple sources. If you want to override the [default merge](https://www.npmjs.com/package/merge) behaviour you can supply your own merge function, providing it is varardic and favours the right most parameter, e.g.
 ```js
-new Confabulous({ merge: customMergeFn })
-
+const pm = require('power-merge')
+const merge = pm.compile({ rules: [ pm.ignoreNull, pm.deepClone ] })
+new Confabulous({ merge })
 ```
 
 ## Loaders
-Loaders are used to load config. Out of the box you can load config from command line parameters, environment variables and files. The following loaders are proviced as separate modules
-
-* [http-loader](https://github.com/guidesmiths/confabulous-http-loader)
-* [etcd-loader](https://github.com/guidesmiths/confabulous-etcd-loader)
-* [vault-loader](https://github.com/guidesmiths/confabulous-vault-loader)
-* [postgres-loader](https://github.com/guidesmiths/confabulous-postgres-loader)
+Loaders are used to load config. Out of the box you can load config from command line parameters, environment variables and files.
 
 ### args
 Loads config from command line arguments
@@ -85,9 +81,17 @@ new Confabulous().add(config => {
 | watch     | boolean | undefined | Watching implemented via [fs.watch](https://nodejs.org/api/fs.html#fs_fs_watch_filename_options_listener). Be sure to read the caveats section if you encounter problems. |
 | encoding  | string  | utf8      | Specified the file encoding
 
+### More Loaders
+The following loaders are proviced as separate modules
+
+* [http-loader](https://www.npmjs.com/package/confabulous-http-loader)
+* [etcd-loader](https://www.npmjs.com/package/confabulous-etcd-loader)
+* [vault-loader](https://www.npmjs.com/package/confabulous-vault-loader)
+* [postgres-loader](https://www.npmjs.com/package/confabulous-postgres-loader)
+* [s3-loader](https://www.npmjs.com/package/confabulous-s3-loader)
+
 ## Post Processors
-Post processes can be used to transform or validate your configuration after it's been loaded. Out of the box you can unflatten config into structured documents,
-parse json and decrypt content.
+Post processes can be used to transform or validate your configuration after it's been loaded. Out of the box you can mount config at a specified key, unflatten key value pairs into structured documents, parse json, decrypt content and transform environment variables.
 
 #### mount
 Mounts the configuration at the specified key
@@ -148,7 +152,8 @@ If you want to prefix your environment variables with an application discriminat
 ```js
 new Confabulous().add(config => {
     return loaders.env(), [
-        processors.envToCamelCaseProp({ prefix: 'GS_' }) // GS_SERVER_PORT => server.port
+        // GS_SERVER_PORT => server.port
+        processors.envToCamelCaseProp({ prefix: 'GS_' })
     ])
 })
 ```
@@ -156,13 +161,14 @@ You can also filter environment variables to include only those you want
 ```js
 new Confabulous().add(config => {
     return loaders.env(), [
-        processors.envToCamelCaseProp({ filter: /^GS_/ }) // Only include environment variables starting with GS_
+        // Only include environment variables starting with GS_
+        processors.envToCamelCaseProp({ filter: /^GS_/ })
     ])
 })
 ```
 
 #### json
-Parses text into JSON. Useful when you have more than one post processor
+Parses text into JSON.
 ```js
 new Confabulous().add(config => {
     return loaders.file({ path: './config.json.encrypted' }, [
@@ -184,10 +190,12 @@ new Confabulous().add(config => {
 
 ## Events
 ### loaded
-Emitted when loading config for the first time. **Deprecated. Pass a callback to the ```end``` function instead.**
+**Deprecated. Pass a callback to the ```end``` function instead.**
+Emitted when loading config for the first time.
 
 ### error
-Emitted when an error occurs loading config for the first time. **Deprecated. Pass a callback to the ```end``` function instead.**
+**Deprecated. Pass a callback to the ```end``` function instead.**
+Emitted when an error occurs loading config for the first time.
 
 ### reloaded
 Emitted when confabulous successfully reloads a watched config.
@@ -195,7 +203,7 @@ Emitted when confabulous successfully reloads a watched config.
 ### reload_error
 Emitted when confabulous encounters an error reloading a watched config
 
-### FAQ
+#### FAQ
 Q. Why doesn't Confabulous notice new files.<br/>
 A. Because fs.watch doesn't notice them either. You can workaround by modifying some configuration watched by a different loader higher up in the confabulous stack
 
