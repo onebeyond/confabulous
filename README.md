@@ -27,7 +27,10 @@ new Confabulous()
 Confabulous automatically merges (and subsequently freezes) configuration from multiple sources. If you want to override the [default merge](https://www.npmjs.com/package/merge) behaviour you can supply your own merge function, providing it is varardic and favours the right most parameter, e.g.
 ```js
 const pm = require('power-merge')
-const merge = pm.compile({ rules: [ pm.ignoreNull, pm.deepClone ] })
+const merge = pm.compile({
+    api: { direction: right-to-left },
+    rules: [ pm.ignoreNull, pm.deepClone ]
+})
 new Confabulous({ merge })
 ```
 
