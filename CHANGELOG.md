@@ -1,5 +1,17 @@
 # Change Log
 
+## [1.5.3]
+### Updated
+- Improved readme
+
+## [1.5.2]
+### Updated
+- Improved readme
+
+## [1.5.1]
+### Updated
+- Improved readme
+
 ## [1.5.0]
 ### Added
 - Support for custom merges

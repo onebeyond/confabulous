@@ -30,7 +30,7 @@ const pm = require('power-merge')\
 const { ignoreNull, deepClone } = pm.ruleSets
 
 const merge = pm.compile({
-    api: { direction: right-to-left },
+    api: { direction: 'right-to-left' },
     rules: [ ignoreNull, deepClone ]
 })
 
