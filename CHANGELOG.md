@@ -1,5 +1,9 @@
 # Change Log
 
+## [1.5.4]
+### Updated
+- Dependencies
+
 ## [1.5.3]
 ### Updated
 - Improved readme
