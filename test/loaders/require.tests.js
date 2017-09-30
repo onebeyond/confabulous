@@ -56,7 +56,9 @@ describe('require', function() {
             assert.ifError(err)
             assert.equal(config.loaded, 'loaded')
             config.updated = new Date().toISOString()
-            fs.writeFile('test/data/config.json', JSON.stringify(config, null, 2))
+            fs.writeFile('test/data/config.json', JSON.stringify(config, null, 2), function(err) {
+                assert.ifError(err)
+            })
         }).once('change', done)
     })
 
@@ -64,7 +66,9 @@ describe('require', function() {
         fs.writeFileSync(doomed, JSON.stringify({ foo: "bar" }))
         req({ path: doomed, mandatory: false, watch: true })(confabulous, function(err, config) {
             assert.ifError(err)
-            fs.unlink(doomed)
+            fs.unlink(doomed, function(err) {
+                assert.ifError(err)
+            })
         }).once('change', done)
     })
 

@@ -58,7 +58,9 @@ describe('file', function() {
             var config = JSON.parse(text)
             assert.equal(config.loaded, 'loaded')
             config.updated = new Date().toISOString()
-            fs.writeFile('test/data/config.json', JSON.stringify(config, null, 2))
+            fs.writeFile('test/data/config.json', JSON.stringify(config, null, 2), function(err) {
+                assert.ifError(err)
+            })
         }).once('change', done)
     })
 
@@ -66,7 +68,9 @@ describe('file', function() {
         fs.writeFileSync(doomed, JSON.stringify({ foo: "bar" }))
         file({ path: doomed, mandatory: false, watch: true })(confabulous, function(err, text) {
             assert.ifError(err)
-            fs.unlink(doomed)
+            fs.unlink(doomed, function(err) {
+                assert.ifError(err)
+            })
         }).once('change', done)
     })
 

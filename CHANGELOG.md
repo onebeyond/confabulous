@@ -2,7 +2,8 @@
 
 ## [1.5.4]
 ### Updated
-- Dependencies
+- Updated dependencies
+- Fixed node deprecation warnings in tests
 
 ## [1.5.3]
 ### Updated
