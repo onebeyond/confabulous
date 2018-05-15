@@ -7,14 +7,14 @@
     "example": "cd examples && SECRET='a password' NODE_ENV=development node index.js",
     "test": "mocha",
     "istanbul": "istanbul cover --report html --report lcov _mocha",
-    "codeclimate": "(test -e .codeclimate && npm run istanbul && source .codeclimate && codeclimate-test-reporter < coverage/lcov.info) || echo skipping codeclimate",
+    "codeclimate": "(test -e .codeclimate && npm run istanbul && source .codeclimate) || echo skipping codeclimate",
     "lint": "eslint .",
     "prepush": "npm run lint && npm test && npm run codeclimate"
   },
   "author": "GuideSmiths Ltd",
   "license": "ISC",
   "dependencies": {
-    "async": "^2.5.0",
+    "async": "^2.6.0",
     "camelize": "^1.0.0",
     "debug": "^3.1.0",
     "deep-freeze": "0.0.1",
@@ -27,15 +27,14 @@
     "safe-json-parse": "^4.0.0"
   },
   "devDependencies": {
-    "chai": "^4.1.0",
-    "codeclimate-test-reporter": "^0.5.0",
-    "eslint": "^4.3.0",
+    "chai": "^4.1.2",
+    "eslint": "^4.19.1",
     "eslint-config-imperative": "^2.0.1",
     "eslint-plugin-imperative": "^2.0.0",
     "husky": "^0.14.3",
     "istanbul": "^0.4.5",
     "lodash.noop": "^3.0.1",
-    "mocha": "^3.4.2"
+    "mocha": "^5.1.1"
   },
   "directories": {
     "example": "examples",
