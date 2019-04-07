@@ -1,5 +1,9 @@
 # Change Log
 
+## [1.7.0]
+### Updated
+- Update dependencies
+
 ## [1.6.0]
 ### Updated
 - Update dependencies

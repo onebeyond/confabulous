@@ -2,8 +2,10 @@ var assert = require('chai').assert
 var env = require('../../lib/loaders/env')
 var EventEmitter = require('events').EventEmitter
 
+
 describe('env', function() {
 
+    process.env.LOADED_MOCHA_OPTS = 'true'
     var confabulous = new EventEmitter()
 
     it('should load environment variables', function(done) {
