@@ -18,7 +18,7 @@
     "camelize": "^1.0.0",
     "debug": "^4.0.1",
     "deep-freeze": "0.0.1",
-    "flat": "^4.1.0",
+    "flat": "^5.0.2",
     "lodash.has": "^4.5.2",
     "lodash.set": "^4.3.2",
     "merge": "^1.2.1",
