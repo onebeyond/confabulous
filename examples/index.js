@@ -1,4 +1,3 @@
-const noop = require('lodash.noop')
 const Confabulous = require('..')
 const loaders = Confabulous.loaders
 const processors = Confabulous.processors
@@ -17,4 +16,4 @@ new Confabulous()
         console.log('Loaded', JSON.stringify(config, null, 2))
     })
 
-setInterval(noop, Number.MAX_SAFE_INTEGER)
+setInterval(function() {}, Number.MAX_SAFE_INTEGER)
