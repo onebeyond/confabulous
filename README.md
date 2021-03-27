@@ -3,7 +3,7 @@ Confabulous is a hierarchical, asynchronous config loader and post processor. It
 
 [![NPM version](https://img.shields.io/npm/v/confabulous.svg?style=flat-square)](https://www.npmjs.com/package/confabulous)
 [![NPM downloads](https://img.shields.io/npm/dm/confabulous.svg?style=flat-square)](https://www.npmjs.com/package/confabulous)
-[![Build Status](https://img.shields.io/travis/guidesmiths/confabulous/master.svg)](https://travis-ci.org/guidesmiths/confabulous)
+[![Node.js CI](https://github.com/guidesmiths/confabulous/workflows/Node.js%20CI/badge.svg)](https://github.com/guidesmiths/confabulous/actions?query=workflow%3A%22Node.js+CI%22)
 [![Code Climate](https://codeclimate.com/github/guidesmiths/confabulous/badges/gpa.svg)](https://codeclimate.com/github/guidesmiths/confabulous)
 [![Test Coverage](https://codeclimate.com/github/guidesmiths/confabulous/badges/coverage.svg)](https://codeclimate.com/github/guidesmiths/confabulous/coverage)
 [![Code Style](https://img.shields.io/badge/code%20style-imperative-brightgreen.svg)](https://github.com/guidesmiths/eslint-config-imperative)
@@ -217,4 +217,3 @@ Emitted when confabulous encounters an error reloading a watched config
 #### FAQ
 Q. Why doesn't Confabulous notice new files.<br/>
 A. Because fs.watch doesn't notice them either. You can workaround by modifying some configuration watched by a different loader higher up in the confabulous stack
-

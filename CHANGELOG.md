@@ -9,6 +9,7 @@
 - Replace imperative with esnext style
 - Replace chai with node assert
 - Update husky
+- Replace travis with github actions
 
 ## [1.7.0]
 ### Updated
