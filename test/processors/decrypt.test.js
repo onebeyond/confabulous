@@ -1,28 +1,68 @@
 const { ok, ifError, strictEqual: equal } = require('assert');
+const { promisify } = require('util');
+const crypto = require('crypto');
 const decrypt = require('../../lib/processors/decrypt');
 
 describe('decrypt', () => {
-  it('should decrypt config', () => {
-    const encrypted = 'aa928aba23d2955dbd8aa6b6d601b4d5a9af55ea4fdf023489b1d45c0b42e5e9e18ff2abfa18b1e0717b513ebcfe4318ada86ea167bef9aafbc7dfb70d81431f115c81e7848a9d35cf24bd1186a75855edd7d46747394ae3a5d30213f700deef34b64e3a3db4ca0734f793d1c4b2ef5b';
-    decrypt({ algorithm: 'aes192', password: 'a password'})(encrypted, (err, config) => {
+
+  const algorithm = 'aes-192-cbc';
+  const password = 'super secret';
+  let key;
+  let iv;
+
+  beforeEach(async () => {
+    key = await getKey(password);
+    iv = await getIv();
+  });
+
+  it('should decrypt config', async (t, done) => {
+    const config = { secret: 'loaded' };
+    const encrypted = encrypt({ algorithm, key, iv }, config);
+    decrypt({ algorithm, key, iv })(encrypted, (err, decrypted) => {
       ifError(err);
-      equal(JSON.parse(config).secret, 'loaded');
+      equal(JSON.parse(decrypted).secret, 'loaded');
+      done();
     });
   });
 
   it('should validate algorithm', () => {
-    const encrypted = 'aa928aba23d2955dbd8aa6b6d601b4d5a9af55ea4fdf023489b1d45c0b42e5e9e18ff2abfa18b1e0717b513ebcfe4318ada86ea167bef9aafbc7dfb70d81431f115c81e7848a9d35cf24bd1186a75855edd7d46747394ae3a5d30213f700deef34b64e3a3db4ca0734f793d1c4b2ef5b';
-    decrypt({ password: 'a password'})(encrypted, (err) => {
+    const encrypted = encrypt({ algorithm, key, iv }, {});
+    decrypt({ key, iv })(encrypted, (err) => {
       ok(err);
       equal(err.message, 'algorithm is required');
     });
   });
 
-  it('should validate password', () => {
-    const encrypted = 'aa928aba23d2955dbd8aa6b6d601b4d5a9af55ea4fdf023489b1d45c0b42e5e9e18ff2abfa18b1e0717b513ebcfe4318ada86ea167bef9aafbc7dfb70d81431f115c81e7848a9d35cf24bd1186a75855edd7d46747394ae3a5d30213f700deef34b64e3a3db4ca0734f793d1c4b2ef5b';
-    decrypt({ algorithm: 'aes192' })(encrypted, (err) => {
+  it('should validate key', () => {
+    const encrypted = encrypt({ algorithm, key, iv }, {});
+    decrypt({ algorithm, iv })(encrypted, (err) => {
       ok(err);
-      equal(err.message, 'password is required');
+      equal(err.message, 'key is required');
     });
   });
+
+  it('should validate iv', () => {
+    const encrypted = encrypt({ algorithm, key, iv }, {});
+    decrypt({ algorithm, key })(encrypted, (err) => {
+      ok(err);
+      equal(err.message, 'iv is required');
+    });
+  });
+
+  function getKey(password) {
+    const scrypt = promisify(crypto.scrypt);
+    return scrypt(password, 'salt', 24);
+  }
+
+  function getIv() {
+    const randomFill = promisify(crypto.randomFill);
+    return randomFill(new Uint8Array(16));
+  }
+
+  function encrypt({ algorithm, key, iv }, document) {
+    const cipher = crypto.createCipheriv(algorithm, key, iv);
+    let encrypted = cipher.update(JSON.stringify(document), 'utf-8', 'hex');
+    encrypted += cipher.final('hex');
+    return encrypted;
+  }
 });

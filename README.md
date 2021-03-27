@@ -193,7 +193,7 @@ Decrypts encrypted configuration.
 ```js
 new Confabulous().add(config => {
     return loaders.file({ path: './config.json.encrypted' }, [
-        processors.decrypt({ algorithm: 'aes192', password: process.env.SECRET }),
+        processors.decrypt({ algorithm: 'aes192', password: process.env.SECRET, iv: process.env.IV }),
         processors.json()
     ])
 })
