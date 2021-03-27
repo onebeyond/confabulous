@@ -6,7 +6,7 @@ Confabulous is a hierarchical, asynchronous config loader and post processor. It
 [![Node.js CI](https://github.com/guidesmiths/confabulous/workflows/Node.js%20CI/badge.svg)](https://github.com/guidesmiths/confabulous/actions?query=workflow%3A%22Node.js+CI%22)
 [![Code Climate](https://codeclimate.com/github/guidesmiths/confabulous/badges/gpa.svg)](https://codeclimate.com/github/guidesmiths/confabulous)
 [![Test Coverage](https://codeclimate.com/github/guidesmiths/confabulous/badges/coverage.svg)](https://codeclimate.com/github/guidesmiths/confabulous/coverage)
-[![Code Style](https://img.shields.io/badge/code%20style-imperative-brightgreen.svg)](https://github.com/guidesmiths/eslint-config-imperative)
+[![Code Style](https://img.shields.io/badge/code%20style-esnext-brightgreen.svg)](https://www.npmjs.com/package/eslint-config-esnext)
 [![Dependency Status](https://david-dm.org/guidesmiths/confabulous.svg)](https://david-dm.org/guidesmiths/confabulous)
 [![devDependencies Status](https://david-dm.org/guidesmiths/confabulous/dev-status.svg)](https://david-dm.org/guidesmiths/confabulous?type=dev)
 
