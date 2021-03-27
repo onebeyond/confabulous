@@ -1,11 +1,11 @@
-var assert = require('chai').assert
-var json = require('../../lib/processors/json')
+const assert = require('chai').assert;
+const json = require('../../lib/processors/json');
 
-describe('json', function() {
-    it('should parse config', function() {
-        json()(JSON.stringify({ foo: { bar: { baz: 1 } } }), function(err, config) {
-            assert.ifError(err)
-            assert.equal(config.foo.bar.baz, 1)
-        })
-    })
-})
+describe('json', () => {
+  it('should parse config', () => {
+    json()(JSON.stringify({ foo: { bar: { baz: 1 } } }), (err, config) => {
+      assert.ifError(err);
+      assert.equal(config.foo.bar.baz, 1);
+    });
+  });
+});

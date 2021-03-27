@@ -6,6 +6,7 @@
 - Remove lodash.noop dependency
 - Replace mocha with zUnit
 - Replace lodash.set, lodash.has with dot-prop
+- Replace imperative with esnext style
 
 ## [1.7.0]
 ### Updated

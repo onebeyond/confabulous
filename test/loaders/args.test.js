@@ -1,29 +1,29 @@
-var assert = require('chai').assert
-var args = require('../../lib/loaders/args')
-var EventEmitter = require('events').EventEmitter
+const assert = require('chai').assert;
+const args = require('../../lib/loaders/args');
+const EventEmitter = require('events').EventEmitter;
 
-describe('args', function() {
+describe('args', () => {
 
-    var confabulous = new EventEmitter()
+  const confabulous = new EventEmitter();
 
-    it('should load arguments', function(t, done) {
-        args()(confabulous, function(err, config) {
-            assert.ifError(err)
-            assert.equal(config['test-argument'], true)
-            done()
-        })
-    })
+  it('should load arguments', (t, done) => {
+    args()(confabulous, (err, config) => {
+      assert.ifError(err);
+      assert.equal(config['test-argument'], true);
+      done();
+    });
+  });
 
-    it('should post-process', function(t, done) {
-        args([
-            function(config, cb) {
-                config['test-argument'] = !config['test-argument']
-                cb(null, config)
-            }
-        ])(confabulous, function(err, config) {
-            assert.ifError(err)
-            assert.equal(config['test-argument'], false)
-            done()
-        })
-    })
-})
+  it('should post-process', (t, done) => {
+    args([
+      function(config, cb) {
+        config['test-argument'] = !config['test-argument'];
+        cb(null, config);
+      }
+    ])(confabulous, (err, config) => {
+      assert.ifError(err);
+      assert.equal(config['test-argument'], false);
+      done();
+    });
+  });
+});
