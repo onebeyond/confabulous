@@ -6,23 +6,23 @@ describe('args', function() {
 
     var confabulous = new EventEmitter()
 
-    it('should load arguments', function(done) {
+    it('should load arguments', function(t, done) {
         args()(confabulous, function(err, config) {
             assert.ifError(err)
-            assert.equal(config.recursive, true)
+            assert.equal(config['test-argument'], true)
             done()
         })
     })
 
-    it('should post-process', function(done) {
+    it('should post-process', function(t, done) {
         args([
             function(config, cb) {
-                config.recursive = !config.recursive
+                config['test-argument'] = !config['test-argument']
                 cb(null, config)
             }
         ])(confabulous, function(err, config) {
             assert.ifError(err)
-            assert.equal(config.recursive, false)
+            assert.equal(config['test-argument'], false)
             done()
         })
     })

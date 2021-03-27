@@ -3,7 +3,7 @@ var Confabulous = require('..')
 
 describe('Confabulous', function() {
 
-    it('should load config', function(done) {
+    it('should load config', function(t, done) {
 
         const loaders = Confabulous.loaders
 
@@ -17,7 +17,7 @@ describe('Confabulous', function() {
             })
     })
 
-    it('should recursively merge config', function(done) {
+    it('should recursively merge config', function(t, done) {
 
         const loaders = Confabulous.loaders
 
@@ -36,7 +36,7 @@ describe('Confabulous', function() {
             })
     })
 
-    it('should support custom merge functions', function(done) {
+    it('should support custom merge functions', function(t, done) {
 
         const loaders = Confabulous.loaders
         const merge = function() { return 'merged' }
@@ -55,7 +55,7 @@ describe('Confabulous', function() {
     })
 
 
-    it('should freeze config', function(done) {
+    it('should freeze config', function(t, done) {
 
         const loaders = Confabulous.loaders
 
@@ -70,7 +70,7 @@ describe('Confabulous', function() {
             })
     })
 
-    it('should emit loaded event', function(done) {
+    it('should emit loaded event', function(t, done) {
 
         const loaders = Confabulous.loaders
 
@@ -83,7 +83,7 @@ describe('Confabulous', function() {
             }).end()
     })
 
-    it('should emit error event', function(done) {
+    it('should emit error event', function(t, done) {
 
         const loaders = Confabulous.loaders
 

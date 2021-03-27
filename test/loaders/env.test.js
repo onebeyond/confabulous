@@ -8,7 +8,7 @@ describe('env', function() {
     process.env.LOADED_MOCHA_OPTS = 'true'
     var confabulous = new EventEmitter()
 
-    it('should load environment variables', function(done) {
+    it('should load environment variables', function(t, done) {
         env()(confabulous, function(err, config) {
             assert.ifError(err)
             assert.equal(config.LOADED_MOCHA_OPTS, 'true')
@@ -16,7 +16,7 @@ describe('env', function() {
         })
     })
 
-    it('should post-process', function(done) {
+    it('should post-process', function(t, done) {
         env([
             function(config, cb) {
                 config.LOADED_MOCHA_OPTS = config.LOADED_MOCHA_OPTS.toUpperCase()

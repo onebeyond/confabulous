@@ -1,5 +1,11 @@
 # Change Log
 
+## [1.8.0]
+### Updated
+- Update dependencies
+- Remove lodash.noop dependency
+- Replace mocha with zUnit
+
 ## [1.7.0]
 ### Updated
 - Update dependencies
