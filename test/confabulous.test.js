@@ -1,4 +1,4 @@
-const assert = require('chai').assert;
+const { ok, ifError, strictEqual: equal } = require('assert');
 const Confabulous = require('..');
 
 describe('Confabulous', () => {
@@ -11,8 +11,8 @@ describe('Confabulous', () => {
       .add(() => {
         return loaders.echo({ loaded: 'loaded' });
       }).end((err, config) => {
-        assert.ifError(err);
-        assert.equal(config.loaded, 'loaded');
+        ifError(err);
+        equal(config.loaded, 'loaded');
         done();
       });
   });
@@ -28,10 +28,10 @@ describe('Confabulous', () => {
       .add(() => {
         return loaders.echo({ loaded: 'overridden', nested: { items: [2] } });
       }).end((err, config) => {
-        assert.ifError(err);
-        assert.equal(config.loaded, 'overridden');
-        assert.equal(config.nested.items.length, 1);
-        assert.equal(config.nested.items[0], 2);
+        ifError(err);
+        equal(config.loaded, 'overridden');
+        equal(config.nested.items.length, 1);
+        equal(config.nested.items[0], 2);
         done();
       });
   });
@@ -48,8 +48,8 @@ describe('Confabulous', () => {
       .add(() => {
         return loaders.echo({ loaded: 'overriden' });
       }).end((err, config) => {
-        assert.ifError(err);
-        assert.equal(config, 'merged');
+        ifError(err);
+        equal(config, 'merged');
         done();
       });
   });
@@ -63,9 +63,9 @@ describe('Confabulous', () => {
       .add(() => {
         return loaders.echo({ loaded: 'loaded' });
       }).end((err, config) => {
-        assert.ifError(err);
+        ifError(err);
         config.frozen = true;
-        assert.equal(config.frozen, undefined);
+        equal(config.frozen, undefined);
         done();
       });
   });
@@ -78,7 +78,7 @@ describe('Confabulous', () => {
       .add(() => {
         return loaders.echo({ loaded: 'loaded' });
       }).on('loaded', (config) => {
-        assert.equal(config.loaded, 'loaded');
+        equal(config.loaded, 'loaded');
         done();
       }).end();
   });
@@ -91,8 +91,8 @@ describe('Confabulous', () => {
       .add(() => {
         return loaders.require({ path: './test/data/missing.json', mandatory: true });
       }).on('error', (err) => {
-        assert.ok(err);
-        assert.ok(/ENOENT/.test(err.message), err.message);
+        ok(err);
+        ok(/ENOENT/.test(err.message), err.message);
         done();
       }).end();
   });

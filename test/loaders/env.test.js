@@ -1,4 +1,4 @@
-const assert = require('chai').assert;
+const { ifError, strictEqual: equal } = require('assert');
 const env = require('../../lib/loaders/env');
 const EventEmitter = require('events').EventEmitter;
 
@@ -10,8 +10,8 @@ describe('env', () => {
 
   it('should load environment variables', (t, done) => {
     env()(confabulous, (err, config) => {
-      assert.ifError(err);
-      assert.equal(config.LOADED_MOCHA_OPTS, 'true');
+      ifError(err);
+      equal(config.LOADED_MOCHA_OPTS, 'true');
       done();
     });
   });
@@ -23,8 +23,8 @@ describe('env', () => {
         cb(null, config);
       }
     ])(confabulous, (err, config) => {
-      assert.ifError(err);
-      assert.equal(config.LOADED_MOCHA_OPTS, 'TRUE');
+      ifError(err);
+      equal(config.LOADED_MOCHA_OPTS, 'TRUE');
       done();
     });
   });
