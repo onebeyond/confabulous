@@ -1,10 +1,11 @@
 # Change Log
 
-## [1.8.0]
+## [2.0.0]
 ### Updated
 - Update dependencies
 - Remove lodash.noop dependency
 - Replace mocha with zUnit
+- Replace lodash.set, lodash.has with dot-prop
 
 ## [1.7.0]
 ### Updated
