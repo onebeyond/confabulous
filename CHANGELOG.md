@@ -12,6 +12,7 @@
 - Replace chai with node assert
 - Update husky
 - Replace travis with github actions
+- Replace merge with ramda.mergeDeepRight due to [issue 41](https://github.com/yeikos/js.merge/issues/41)
 
 ## [1.7.0]
 ### Updated

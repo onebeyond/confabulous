@@ -24,17 +24,13 @@ new Confabulous()
 ```
 
 ## Merging
-Confabulous automatically merges (and subsequently freezes) configuration from multiple sources. If you want to override the [default merge](https://www.npmjs.com/package/merge) behaviour you can supply your own merge function, providing it is varardic and favours the right most parameter, e.g.
+Confabulous recursively merges (and subsequently freezes) configuration from multiple sources. If you want to override the [default merge](https://ramdajs.com/docs/#mergeDeepRight) behaviour you can supply your own merge function, providing it is varardic and favours the right most parameter, e.g.
 ```js
-const pm = require('power-merge')\
-const { ignoreNull, deepClone } = pm.ruleSets
+function shallow(...args) {
+  return Object.assign({}, ...args);
+}
 
-const merge = pm.compile({
-    api: { direction: 'right-to-left' },
-    rules: [ ignoreNull, deepClone ]
-})
-
-new Confabulous({ merge })
+new Confabulous({ merge: shallow })
     .add(config => loaders.require({ path: './conf/defaults.js' }))
     .add(config => loaders.require({ path: './conf/production.js' }))
     .end((err, config) => {
