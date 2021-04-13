@@ -6,6 +6,14 @@ describe('args', () => {
 
   const confabulous = new EventEmitter();
 
+  beforeEach(() => {
+    process.argv.push('--test-argument');
+  });
+
+  afterEach(() => {
+    process.argv.pop();
+  });
+
   it('should load arguments', (t, done) => {
     args()(confabulous, (err, config) => {
       ifError(err);

@@ -1,5 +1,10 @@
 # Change Log
 
+## [2.0.1]
+### Updated
+- Update zUnit
+- Use new npm token
+
 ## [2.0.0]
 ### Breaking Changes
 - Updated decrypt processor to use [crypto.createCipheriv](https://nodejs.org/api/crypto.html#crypto_crypto_createcipheriv_algorithm_key_iv_options). Rather than suppying an algorithm and password, now an algorithm, key and initialization vector iare required.
