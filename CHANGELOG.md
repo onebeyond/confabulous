@@ -1,5 +1,13 @@
 # Change Log
 
+## [2.0.3]
+### Update
+- Update dev depenencies
+
+## [2.0.2]
+### Update
+- Fix build
+
 ## [2.0.1]
 ### Updated
 - Update zUnit
