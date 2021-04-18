@@ -25,11 +25,11 @@
     "safe-json-parse": "^4.0.0"
   },
   "devDependencies": {
-    "eslint": "^6.8.0",
+    "eslint": "^7.24.0",
     "eslint-config-esnext": "^4.1.0",
-    "husky": "^5.2.0",
+    "husky": "^6.0.0",
     "nyc": "^15.1.0",
-    "zunit": "^3.0.8"
+    "zunit": "^3.2.1"
   },
   "directories": {
     "example": "examples",
