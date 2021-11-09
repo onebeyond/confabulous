@@ -253,5 +253,5 @@ Emitted when confabulous encounters an error reloading a watched config
 Q. Why doesn't Confabulous notice new files.<br/>
 A. Because fs.watch doesn't notice them either. You can workaround by modifying some configuration watched by a different loader higher up in the confabulous stack
 
-Q. Why does jest emit a FSEVENTWRAP error
+Q. Why does jest emit a FSEVENTWRAP error.<br/>
 A. Because you have configured a loader to watch for changes, but not called confabulous.close() in your test teardown
