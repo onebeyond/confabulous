@@ -4,7 +4,6 @@ const fs = require('fs');
 const EventEmitter = require('events').EventEmitter;
 
 describe('file', () => {
-
   let confabulous;
   const id = Math.floor(Math.random() * 10000000);
   const doomed = 'test/data/delete-me-' + id + '.json';
@@ -16,9 +15,11 @@ describe('file', () => {
   afterEach(() => {
     confabulous.emit('reloading');
     confabulous.removeAllListeners();
-    fs.writeFileSync('test/data/config.json', JSON.stringify({ loaded: "loaded" }, null, 2));
+    fs.writeFileSync('test/data/config.json', JSON.stringify({ loaded: 'loaded' }, null, 2));
     /* eslint-disable-next-line no-empty */
-    try { fs.unlinkSync(doomed); } catch(err) {}
+    try {
+      fs.unlinkSync(doomed);
+    } catch (err) {}
   });
 
   it('should require path when mandatory', (t, done) => {
@@ -66,7 +67,7 @@ describe('file', () => {
   });
 
   it('should emit change event when file is deleted', (t, done) => {
-    fs.writeFileSync(doomed, JSON.stringify({ foo: "bar" }));
+    fs.writeFileSync(doomed, JSON.stringify({ foo: 'bar' }));
     file({ path: doomed, mandatory: false, watch: true })(confabulous, (err) => {
       ifError(err);
       fs.unlink(doomed, (err) => {
@@ -76,11 +77,10 @@ describe('file', () => {
   });
 
   it('should post-process', (t, done) => {
-
     file({ path: 'test/data/config.json' }, [
-      function(text, cb) {
+      function (text, cb) {
         cb(null, JSON.parse(text));
-      }
+      },
     ])(confabulous, (err, config) => {
       ifError(err);
       equal(config.loaded, 'loaded');

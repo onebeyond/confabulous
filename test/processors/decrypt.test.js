@@ -4,7 +4,6 @@ const crypto = require('crypto');
 const decrypt = require('../../lib/processors/decrypt');
 
 describe('decrypt', () => {
-
   const algorithm = 'aes-192-cbc';
   const password = 'super secret';
   let key;

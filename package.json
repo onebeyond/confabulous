@@ -25,10 +25,13 @@
     "safe-json-parse": "^4.0.0"
   },
   "devDependencies": {
-    "eslint": "^7.24.0",
-    "eslint-config-esnext": "^4.1.0",
-    "husky": "^6.0.0",
+    "eslint": "^8.2.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "husky": "^7.0.4",
+    "lint-staged": "^11.2.6",
     "nyc": "^15.1.0",
+    "prettier": "2.4.1",
     "zunit": "^3.2.1"
   },
   "directories": {
@@ -56,6 +59,9 @@
     "postgres",
     "http"
   ],
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown"
+  },
   "bugs": {
     "url": "https://github.com/guidesmiths/confabulous/issues"
   },

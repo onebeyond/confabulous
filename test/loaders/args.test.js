@@ -3,7 +3,6 @@ const args = require('../../lib/loaders/args');
 const EventEmitter = require('events').EventEmitter;
 
 describe('args', () => {
-
   const confabulous = new EventEmitter();
 
   beforeEach(() => {
@@ -24,10 +23,10 @@ describe('args', () => {
 
   it('should post-process', (t, done) => {
     args([
-      function(config, cb) {
+      function (config, cb) {
         config['test-argument'] = !config['test-argument'];
         cb(null, config);
-      }
+      },
     ])(confabulous, (err, config) => {
       ifError(err);
       equal(config['test-argument'], false);

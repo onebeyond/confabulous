@@ -2,7 +2,6 @@ const { ifError, strictEqual: equal } = require('assert');
 const envToProp = require('../../lib/processors/envToProp');
 
 describe('Environment Variables to Properties', () => {
-
   it('should convert ENV_VAR to env.var', () => {
     envToProp()({ ENV_VAR: 'test' }, (err, config) => {
       ifError(err);

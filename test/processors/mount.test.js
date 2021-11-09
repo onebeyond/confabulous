@@ -3,7 +3,7 @@ const mount = require('../../lib/processors/mount');
 
 describe('mount', () => {
   it('should mount config at the specified key', () => {
-    mount({ key : 'foo.bar' })({ baz: 1 }, (err, config) => {
+    mount({ key: 'foo.bar' })({ baz: 1 }, (err, config) => {
       ifError(err);
       equal(config.foo.bar.baz, 1);
     });
