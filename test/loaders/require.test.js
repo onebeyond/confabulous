@@ -74,6 +74,21 @@ describe('require', () => {
     }).once('change', done);
   });
 
+  it('should emit change event when content changes', (t, done) => {
+    req({ path: 'test/data/config.json', watch: true })(confabulous, (err, config) => {
+      ifError(err);
+      confabulous.emit('closing');
+      equal(config.loaded, 'loaded');
+      config.updated = new Date().toISOString();
+      fs.writeFile('test/data/config.json', JSON.stringify(config, null, 2), (err) => {
+        ifError(err);
+        setTimeout(done, 200);
+      });
+    }).once('change', () => {
+      done(new Error('Should not have emitted change event'));
+    });
+  });
+
   it('should post-process', (t, done) => {
     req({ path: 'test/data/config.json' }, [
       function (config, cb) {

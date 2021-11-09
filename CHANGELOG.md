@@ -1,6 +1,10 @@
 # Change Log
 
-## [2.0.4]
+## [2.1.0]
+
+### Added
+
+- confabulous.close - See readme for details
 
 ### Update
 

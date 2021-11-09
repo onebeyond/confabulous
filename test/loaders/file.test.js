@@ -76,6 +76,22 @@ describe('file', () => {
     }).once('change', done);
   });
 
+  it('should stop watching on close event', (t, done) => {
+    file({ path: 'test/data/config.json', watch: true })(confabulous, (err, text) => {
+      ifError(err);
+      confabulous.emit('closing');
+      const config = JSON.parse(text);
+      equal(config.loaded, 'loaded');
+      config.updated = new Date().toISOString();
+      fs.writeFile('test/data/config.json', JSON.stringify(config, null, 2), (err) => {
+        ifError(err);
+        setTimeout(done, 200);
+      });
+    }).once('change', () => {
+      done(new Error('Should not have emitted change event'));
+    });
+  });
+
   it('should post-process', (t, done) => {
     file({ path: 'test/data/config.json' }, [
       function (text, cb) {

@@ -15,7 +15,7 @@ Confabulous is a hierarchical, asynchronous config loader and post processor. It
 const Confabulous = require('confabulous');
 const loaders = Confabulous.loaders;
 
-new Confabulous()
+const confabulous = new Confabulous()
   .add((config) => loaders.require({ path: './conf/defaults.js' }))
   .add((config) => loaders.require({ path: './conf/production.js' }))
   .end((err, config) => {
@@ -226,6 +226,10 @@ new Confabulous().add((config) => {
 
 ## Events
 
+### closing
+
+Calling confabulous.close will emit a 'closing' event. This can be used by loaders to free up resources (e.g. close file watchers)
+
 ### loaded
 
 **Deprecated. Pass a callback to the `end` function instead.**
@@ -248,3 +252,6 @@ Emitted when confabulous encounters an error reloading a watched config
 
 Q. Why doesn't Confabulous notice new files.<br/>
 A. Because fs.watch doesn't notice them either. You can workaround by modifying some configuration watched by a different loader higher up in the confabulous stack
+
+Q. Why does jest emit a FSEVENTWRAP error
+A. Because you have configured a loader to watch for changes, but not called confabulous.close() in your test teardown

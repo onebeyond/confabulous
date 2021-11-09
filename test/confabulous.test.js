@@ -84,6 +84,12 @@ describe('Confabulous', () => {
       .end();
   });
 
+  it('should emit closing event', (t, done) => {
+    const confabulous = new Confabulous().end();
+    confabulous.on('closing', done);
+    confabulous.close();
+  });
+
   it('should emit error event', (t, done) => {
     const loaders = Confabulous.loaders;
 
