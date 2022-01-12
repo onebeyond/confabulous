@@ -20,7 +20,7 @@
     "dot-prop": "^6.0.1",
     "flat": "^5.0.2",
     "minimist": "^1.2.5",
-    "ramda": "^0.27.1",
+    "ramda": "^0.27.2",
     "require-all": "^3.0.0",
     "safe-json-parse": "^4.0.0"
   },
