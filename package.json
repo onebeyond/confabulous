@@ -21,18 +21,17 @@
     "flat": "^5.0.2",
     "minimist": "^1.2.5",
     "ramda": "^0.27.1",
-    "require-all": "^3.0.0",
     "safe-json-parse": "^4.0.0"
   },
   "devDependencies": {
     "eslint": "^8.2.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
+    "husky": "^7.0.0",
     "lint-staged": "^11.2.6",
     "nyc": "^15.1.0",
     "prettier": "2.4.1",
-    "zunit": "^3.2.1",
-    "husky": "^7.0.0"
+    "zunit": "^3.2.1"
   },
   "directories": {
     "example": "examples",
