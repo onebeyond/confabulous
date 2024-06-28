@@ -6,7 +6,7 @@
   "scripts": {
     "example": "cd examples && SECRET='a password' NODE_ENV=development node index.js",
     "test": "zUnit",
-    "coverage": "nyc --reporter lcov npm run test",
+    "coverage": "nyc --report html --reporter lcov --reporter text-summary zUnit",
     "lint": "eslint .",
     "prepare": "husky install"
   },
