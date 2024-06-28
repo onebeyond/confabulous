@@ -4,9 +4,10 @@ Confabulous is a hierarchical, asynchronous config loader and post processor. It
 
 [![NPM version](https://img.shields.io/npm/v/confabulous.svg?style=flat-square)](https://www.npmjs.com/package/confabulous)
 [![NPM downloads](https://img.shields.io/npm/dm/confabulous.svg?style=flat-square)](https://www.npmjs.com/package/confabulous)
-[![Node.js CI](https://github.com/guidesmiths/confabulous/workflows/Node.js%20CI/badge.svg)](https://github.com/guidesmiths/confabulous/actions?query=workflow%3A%22Node.js+CI%22)
-[![Code Climate](https://codeclimate.com/github/guidesmiths/confabulous/badges/gpa.svg)](https://codeclimate.com/github/guidesmiths/confabulous)
-[![Test Coverage](https://codeclimate.com/github/guidesmiths/confabulous/badges/coverage.svg)](https://codeclimate.com/github/guidesmiths/confabulous/coverage)
+[![Node.js CI](https://github.com/onebeyond/confabulous/actions/workflows/ci.yml/badge.svg)](https://github.com/onebeyond/confabulous/actions/workflows/ci.yml)
+[![Release and Publish](https://github.com/onebeyond/confabulous/actions/workflows/release-and-publish.yml/badge.svg)](https://github.com/onebeyond/confabulous/actions/workflows/release-and-publish.yml)
+[![Code Climate](https://codeclimate.com/github/onebeyond/confabulous/badges/gpa.svg)](https://codeclimate.com/github/onebeyond/confabulous)
+[![Test Coverage](https://codeclimate.com/github/onebeyond/confabulous/badges/coverage.svg)](https://codeclimate.com/github/onebeyond/confabulous/coverage)
 [![Code Style](https://img.shields.io/badge/code%20style-prettier-brightgreen.svg)](https://github.com/prettier/prettier)
 
 ## TL;DR
