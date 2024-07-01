@@ -4,6 +4,13 @@
 
 - Fixed a few typos in the changelog
 
+## [2.1.2](https://github.com/onebeyond/confabulous/compare/confabulous-v2.1.1...confabulous-v2.1.2) (2024-07-01)
+
+
+### ☁️ CI
+
+* fix allowed-endpoints ([645cad5](https://github.com/onebeyond/confabulous/commit/645cad5f92957804d88d162e804b25e98eadc549))
+
 ## [2.1.1](https://github.com/onebeyond/confabulous/compare/confabulous-v2.1.0...confabulous-v2.1.1) (2024-07-01)
 
 
