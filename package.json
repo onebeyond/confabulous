@@ -1,6 +1,6 @@
 {
   "name": "confabulous",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "A pluggable, hierarchical, asynchronous config loader and post processor with support for environment variables, command line arguments, json, javascript, http, vault, etcd and postgres",
   "main": "index.js",
   "scripts": {
